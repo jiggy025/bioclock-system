@@ -158,5 +158,3 @@ GitHub
 * REST API alternative to RMI
 * Improved reporting features
 * Dockerized deployment
-
-These make your GitHub look **like a real production system**, not just a school project.
