@@ -5,6 +5,7 @@ import java.awt.BorderLayout;
 import java.awt.CardLayout;
 import java.awt.Color;
 import java.awt.Component;
+import java.awt.Cursor;
 import java.awt.Dimension;
 import java.awt.FlowLayout;
 import java.awt.Font;
@@ -39,6 +40,7 @@ public class EmployeeListPanel extends JPanel {
         backButton.setBackground(new Color(245, 245, 245));
         backButton.setBorderPainted(false);
         backButton.setContentAreaFilled(false);
+        backButton.setCursor(new Cursor(Cursor.HAND_CURSOR));
 
         backButton.addActionListener(new ActionListener() {
             @Override

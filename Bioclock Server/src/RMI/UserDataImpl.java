@@ -22,4 +22,9 @@ public class UserDataImpl extends UnicastRemoteObject implements UserService {
         System.out.println("RMI method invoked!");
         return userDataService.getAllUsersDTO();
     }
+
+    @Override
+    public void addEmployee(UserDataDTO user) throws RemoteException {
+        userDataService.addEmployee(user);
+    }
 }

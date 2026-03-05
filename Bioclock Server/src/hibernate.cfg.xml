@@ -22,5 +22,6 @@
 
         <!-- Annotated classes -->
         <mapping class="bioclock.server.entity.UserData"/>
+        <mapping class="bioclock.server.entity.BioDevice"/>
     </session-factory>
 </hibernate-configuration>

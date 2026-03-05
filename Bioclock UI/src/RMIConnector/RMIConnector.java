@@ -1,5 +1,6 @@
 package RMIConnector;
 
+import bioclock.common.DeviceService;
 import bioclock.common.UserService;
 import java.rmi.registry.LocateRegistry;
 import java.rmi.registry.Registry;
@@ -9,5 +10,11 @@ public class RMIConnector {
         Registry registry = LocateRegistry.getRegistry("localhost", 1099);
         UserService service = (UserService) registry.lookup("UserService");
         return service;
+    }
+    
+    public static DeviceService getDeviceService() throws Exception {
+        Registry registry = LocateRegistry.getRegistry("localhost", 1099);
+        DeviceService deviceService = (DeviceService) registry.lookup("DeviceService");
+        return deviceService;
     }
 }

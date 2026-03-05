@@ -20,6 +20,8 @@ import javax.swing.JPanel;
 
 public class SideBar extends JPanel {
     
+    private Runnable onAddUserClick;
+    
     public SideBar(final Runnable onLogout){
         setLayout(new BoxLayout(this, BoxLayout.Y_AXIS));
         setBackground(new Color(248, 248, 252));
@@ -59,6 +61,14 @@ public class SideBar extends JPanel {
         addUser.setFont(new Font("SansSerif", Font.BOLD, 14));
         addUser.setAlignmentX(Component.RIGHT_ALIGNMENT);
         addUser.setCursor(Cursor.getPredefinedCursor(Cursor.HAND_CURSOR));
+        addUser.addMouseListener(new MouseAdapter(){
+            @Override
+            public void mouseClicked(MouseEvent e) {
+                if(onAddUserClick != null) {
+                    onAddUserClick.run();
+                }
+            }
+        });
         
         navPanel.add(fullName);
         navPanel.add(Box.createVerticalStrut(12));
@@ -80,5 +90,9 @@ public class SideBar extends JPanel {
                 onLogout.run();
             }
         });
+    }
+    
+    public void setOnAddUserClick(Runnable action) {
+        this.onAddUserClick = action;
     }
 }

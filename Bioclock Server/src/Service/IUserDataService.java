@@ -5,4 +5,6 @@ import java.util.List;
 
 public interface IUserDataService {
     List<UserDataDTO> getAllUsersDTO();
+
+    void addEmployee(UserDataDTO user);
 }

@@ -23,4 +23,13 @@ public class RMIEmployeeService implements EmployeeService {
             return Collections.emptyList();
         }
     }
+    
+    @Override
+    public void addEmployee(UserDataDTO user) {
+        try {
+            remoteService.addEmployee(user);
+        } catch (RemoteException e) {
+            throw new RuntimeException("Failed to add employee", e);
+        }
+    }
 }

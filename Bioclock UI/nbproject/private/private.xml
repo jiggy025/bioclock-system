@@ -5,17 +5,22 @@
         <group>
             <file>file:/C:/Users/Jiggyy/Documents/NetBeansProjects/Bioclock%20UI/src/UI/panels/EmployeeItemPanel.java</file>
             <file>file:/C:/Users/Jiggyy/Documents/NetBeansProjects/Bioclock%20UI/src/UI/Controller/EmployeeController.java</file>
+            <file>file:/C:/Users/Jiggyy/Documents/NetBeansProjects/Bioclock%20UI/src/UI/Dialog/AddEmployeeDialog.java</file>
             <file>file:/C:/Users/Jiggyy/Documents/NetBeansProjects/Bioclock%20UI/src/bioclock/client/service/RMIEmployeeService.java</file>
             <file>file:/C:/Users/Jiggyy/Documents/NetBeansProjects/Bioclock%20UI/src/UI/MainUI.java</file>
             <file>file:/C:/Users/Jiggyy/Documents/NetBeansProjects/Bioclock%20UI/src/UI/Layout/DashboardView.java</file>
+            <file>file:/C:/Users/Jiggyy/Documents/NetBeansProjects/Bioclock%20UI/src/UI/Controller/ApplicationController.java</file>
             <file>file:/C:/Users/Jiggyy/Documents/NetBeansProjects/Bioclock%20UI/src/UI/panels/EmployeeListPanel.java</file>
             <file>file:/C:/Users/Jiggyy/Documents/NetBeansProjects/Bioclock%20UI/src/UI/Components/NavItem.java</file>
-            <file>file:/C:/Users/Jiggyy/Documents/NetBeansProjects/Bioclock%20UI/src/bioclock/clientmain/BioCard.java</file>
+            <file>file:/C:/Users/Jiggyy/Documents/NetBeansProjects/Bioclock%20UI/src/UI/Components/CircleAvatar.java</file>
             <file>file:/C:/Users/Jiggyy/Documents/NetBeansProjects/Bioclock%20UI/src/bioclock/client/service/EmployeeService.java</file>
             <file>file:/C:/Users/Jiggyy/Documents/NetBeansProjects/Bioclock%20UI/src/bioclock/clientmain/clientMain.java</file>
+            <file>file:/C:/Users/Jiggyy/Documents/NetBeansProjects/Bioclock%20UI/src/UI/Components/LoadingOverlay.java</file>
             <file>file:/C:/Users/Jiggyy/Documents/NetBeansProjects/Bioclock%20UI/src/RMIConnector/RMIConnector.java</file>
+            <file>file:/C:/Users/Jiggyy/Documents/NetBeansProjects/Bioclock%20UI/src/bioclock/client/service/RMIDeviceService.java</file>
             <file>file:/C:/Users/Jiggyy/Documents/NetBeansProjects/Bioclock%20UI/src/UI/Layout/SideBar.java</file>
-            <file>file:/C:/Users/Jiggyy/Documents/NetBeansProjects/Bioclock%20UI/src/bioclock/clientmain/CircleAvatar.java</file>
+            <file>file:/C:/Users/Jiggyy/Documents/NetBeansProjects/Bioclock%20UI/src/UI/Components/BioCard.java</file>
+            <file>file:/C:/Users/Jiggyy/Documents/NetBeansProjects/Bioclock%20UI/src/UI/Controller/DeviceController.java</file>
         </group>
     </open-files>
 </project-private>

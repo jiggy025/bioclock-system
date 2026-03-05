@@ -6,6 +6,9 @@ public class UserDataDTO implements Serializable {
     private String empName;
     private int empIdNum;
     private int empID;
+    
+    private int deviceId;
+    private String deviceName;
 
     public UserDataDTO() {
     }
@@ -36,5 +39,21 @@ public class UserDataDTO implements Serializable {
 
     public void setEmpID(int empID) {
         this.empID = empID;
+    }
+
+    public int getDeviceId() {
+        return deviceId;
+    }
+
+    public void setDeviceId(int deviceId) {
+        this.deviceId = deviceId;
+    }
+
+    public String getDeviceName() {
+        return deviceName;
+    }
+
+    public void setDeviceName(String deviceName) {
+        this.deviceName = deviceName;
     }
 }

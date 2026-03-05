@@ -1,73 +1,54 @@
 package UI;
 
+import UI.Components.LoadingOverlay;
+import UI.Controller.DeviceController;
 import UI.Layout.DashboardView;
 import UI.Layout.SideBar;
-import RMIConnector.RMIConnector;
-import UI.Components.BioCard;
-import UI.Components.CircleAvatar;
-import UI.Components.NavItem;
 import UI.Controller.EmployeeController;
+import UI.Dialog.AddEmployeeDialog;
 import UI.panels.EmployeeListPanel;
-import UI.panels.SearchPanel;
-import bioclock.common.UserService;
+import bioclock.dto.DeviceDTO;
 import bioclock.dto.UserDataDTO;
 import java.awt.BorderLayout;
 import java.awt.CardLayout;
-import java.awt.Color;
-import java.awt.Component;
-import java.awt.Cursor;
-import java.awt.Dimension;
-import java.awt.FlowLayout;
-import java.awt.Font;
-import java.awt.Image;
-import java.awt.event.MouseAdapter;
-import java.awt.event.MouseEvent;
-import java.rmi.RemoteException;
 import java.util.List;
-import javax.swing.BorderFactory;
-import javax.swing.Box;
-import javax.swing.BoxLayout;
-import javax.swing.ImageIcon;
-import javax.swing.JButton;
-import javax.swing.JComponent;
-import javax.swing.JLabel;
 import javax.swing.JOptionPane;
 import javax.swing.JPanel;
-import javax.swing.JScrollPane;
 import javax.swing.SwingUtilities;
-import javax.swing.SwingWorker;
 
 public class MainUI extends javax.swing.JFrame {
 
     Object[] options = {"Agree", "Disagree"};
-    private EmployeeListPanel employeeListPanel;
-    private CardLayout mainLayout;
-    private UserService service;
-    private EmployeeController employeeController;
+    private final EmployeeListPanel employeeListPanel;
+    private final CardLayout mainLayout;
     
-    public MainUI() {
+    private Runnable onEmployeeCardClick;
+    private Runnable setOnAddUserclick;
+    
+    private LoadingOverlay loadingOverlay;
+
+    private static DeviceController deviceController;
+    private static EmployeeController employeeController;
+    
+    private SideBar sideBar;
+    private DashboardView dashBoardView;
+    
+    public MainUI(EmployeeController employeeController, DeviceController deviceController) {
         initComponents();
+        this.deviceController = deviceController;
+        this.employeeController = employeeController;
+        
+        createLoadingOverlay();
+        
         setTitle("Bioclock UI");
         setSize(600, 600);
-        
-        try {
-            service = RMIConnector.getService();
-        } catch (Exception e) {
-            e.printStackTrace();
-            JOptionPane.showMessageDialog(this,
-                "Cannot connect to server.",
-                "Connection Error",
-                JOptionPane.ERROR_MESSAGE);
-        }
-        
-        employeeController = new EmployeeController(service);
         
         mainLayout = new CardLayout();
         mainContainer.setLayout(mainLayout);
         
         employeeListPanel = new EmployeeListPanel(mainLayout, mainContainer);
         
-        SideBar sideBar = new SideBar(new Runnable() {
+        sideBar = new SideBar(new Runnable() {
             @Override
             public void run() {
                 int choice = JOptionPane.showConfirmDialog(
@@ -75,20 +56,26 @@ public class MainUI extends javax.swing.JFrame {
                     "Are you sure you want to logout?",
                     "Confirmation",
                     JOptionPane.YES_NO_OPTION
-            );
+                );
+                
                 if (choice == JOptionPane.YES_OPTION) {
                     System.exit(0);
-                    }
+                }
             }
         });  
 
-        DashboardView dashboardView = new DashboardView(
-                employeeController, employeeListPanel,
-                mainLayout, mainContainer);
+        dashBoardView = new DashboardView(deviceController, new Runnable(){
+            @Override
+            public void run() {
+                if(onEmployeeCardClick != null) {
+                    onEmployeeCardClick.run();
+                }
+            }
+        });
         
         JPanel dashboardPage = new JPanel(new BorderLayout());
         dashboardPage.add(sideBar, BorderLayout.WEST);
-        dashboardPage.add(dashboardView, BorderLayout.CENTER);
+        dashboardPage.add(dashBoardView, BorderLayout.CENTER);
         
         mainContainer.add(dashboardPage, "dashboard");
         mainContainer.add(employeeListPanel, "employees");
@@ -122,9 +109,48 @@ public class MainUI extends javax.swing.JFrame {
     public static void main(String args[]) {
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                new MainUI().setVisible(true);
+                new MainUI(employeeController, deviceController).setVisible(true);
             }
         });
+    }
+    
+    public void setOnEmployeeCardClick(Runnable action) {
+        this.onEmployeeCardClick = action;
+    }
+    
+    public void showEmployees() {
+        mainLayout.show(mainContainer, "employees");
+    }
+    
+    public void setEmployees(List<UserDataDTO> users) {
+        employeeListPanel.setEmployees(users);
+    }
+    
+    public void setOnAddUserClick(Runnable action){
+        sideBar.setOnAddUserClick(action);
+    }
+    
+    private void createLoadingOverlay() {
+        loadingOverlay = new LoadingOverlay();
+        loadingOverlay.setVisible(false);
+        setGlassPane(loadingOverlay);
+    }
+    
+    public void showLoading(boolean loading) {
+        loadingOverlay.setVisible(loading);
+    }
+    
+    public void setDevices(List<DeviceDTO> devices) {
+        dashBoardView.setDevices(devices, onEmployeeCardClick);
+    }
+    
+    public void showAddUserDialog(List<DeviceDTO> devices,
+                              AddEmployeeDialog.SaveListener listener) {
+
+            AddEmployeeDialog dialog =
+                new AddEmployeeDialog(this, devices, listener);
+
+            dialog.setVisible(true);
     }
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JPanel mainContainer;

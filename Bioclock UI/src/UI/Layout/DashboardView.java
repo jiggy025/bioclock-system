@@ -1,9 +1,11 @@
 package UI.Layout;
 
 import UI.Components.BioCard;
+import UI.Controller.DeviceController;
 import UI.Controller.EmployeeController;
 import UI.panels.EmployeeListPanel;
 import UI.panels.SearchPanel;
+import bioclock.dto.DeviceDTO;
 import bioclock.dto.UserDataDTO;
 import java.awt.BorderLayout;
 import java.awt.CardLayout;
@@ -18,10 +20,12 @@ import javax.swing.JScrollPane;
 
 public class DashboardView extends JPanel{
     
-    public DashboardView (final EmployeeController controller, 
-                          final EmployeeListPanel employeeListPanel,
-                          final CardLayout layout, 
-                          final JPanel container) {
+    private final DeviceController controller;
+    private JPanel wrapperPanel;
+    
+    public DashboardView (DeviceController controller, Runnable onCardClick) {
+        
+        this.controller = controller;
         
         setBackground(Color.WHITE);
         setLayout(new BorderLayout());
@@ -34,22 +38,9 @@ public class DashboardView extends JPanel{
         headerPanel.add(searchPanel, BorderLayout.CENTER);
         headerPanel.setOpaque(false);
 
-        JPanel wrapperPanel = new JPanel();
+        wrapperPanel = new JPanel();
         wrapperPanel.setLayout(new BoxLayout(wrapperPanel, BoxLayout.Y_AXIS));
         wrapperPanel.setBackground(Color.WHITE);
-
-        wrapperPanel.add(new BioCard("Bio 1", "Central", new Runnable() {
-            @Override
-            public void run() {
-                try {
-                List<UserDataDTO> users = controller.loadEmployees();
-                employeeListPanel.setEmployees(users);
-                layout.show(container, "employees");
-            } catch (RemoteException e) {
-                e.printStackTrace();
-            }
-            }
-        }));
 
         wrapperPanel.add(Box.createVerticalGlue());
 
@@ -61,5 +52,24 @@ public class DashboardView extends JPanel{
         add(headerPanel, BorderLayout.NORTH);
         add(scrollPane, BorderLayout.CENTER);
         
+        loadDevices(onCardClick);
+    }
+    
+    public void loadDevices(Runnable onCardClick) {
+        
+        List<DeviceDTO> devices = controller.loadDevices();
+        setDevices(devices, onCardClick); 
+        
+    }
+    
+    public void setDevices(List<DeviceDTO> devices, Runnable onCardClick) {
+        wrapperPanel.removeAll();
+        
+        for(DeviceDTO device : devices) {
+            wrapperPanel.add(new BioCard(device.getName(), device.getLocation(), onCardClick));
+        }
+        
+        wrapperPanel.revalidate();
+        wrapperPanel.repaint();
     }
 }

@@ -19,4 +19,8 @@ public class EmployeeController {
     public List<UserDataDTO> loadEmployees()  {
         return employeeService.getAllUsers();
     }
+    
+    public void addEmployees(UserDataDTO user) {
+        employeeService.addEmployee(user);
+    }
 }

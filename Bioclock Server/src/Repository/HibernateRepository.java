@@ -16,17 +16,35 @@ public class HibernateRepository implements IUserDataRepository {
     }
     
     @Override
+    public void save(UserData user) {
+        Session session = sessionFactory.openSession();
+        Transaction tx = null;
+        
+        try {
+            tx = session.beginTransaction();
+            
+            session.save(user);
+            
+            tx.commit();
+        } catch (Throwable e) {
+            if (tx != null)
+                tx.rollback();
+            throw e;
+        } finally {
+            session.close();
+        }
+    }
+    
+    @Override
     public List<UserData> findAll() {
         Session session = sessionFactory.openSession();
         Transaction tx = null;
         List<UserData> users = null;
 
-        System.out.println("DAO layer called");
         try {
             tx = session.beginTransaction();
             users = session.createQuery("from UserData").list();
             tx.commit();
-            System.out.println("DAO layer called");
             return users;
             
         } catch (Throwable e) {

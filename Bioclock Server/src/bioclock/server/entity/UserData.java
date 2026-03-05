@@ -5,6 +5,8 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 
 @Entity
@@ -20,6 +22,10 @@ public class UserData {
     
     @Column(name="empIdNum")
     private int empIdNum;
+    
+    @ManyToOne
+    @JoinColumn(name="device_id")
+    private BioDevice device;
 
     public String getEmpName() {
         return empName;
@@ -44,6 +50,12 @@ public class UserData {
     public void setEmpId(int empID) {
         this.empID = empID;
     }
-    
-    
+
+    public BioDevice getDevice() {
+        return device;
+    }
+
+    public void setDevice(BioDevice device) {
+        this.device = device;
+    }
 }

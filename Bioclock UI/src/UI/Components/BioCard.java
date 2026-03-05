@@ -54,9 +54,11 @@ public class BioCard extends JPanel {
             public void mouseClicked(MouseEvent e) {
                 if (onClick != null) {
                     onClick.run();
-                }
-            }
+                } 
+           }
         });
+        
+        this.setCursor(new Cursor(Cursor.HAND_CURSOR));
         
         ToggleSwitch toggle = new ToggleSwitch();
         

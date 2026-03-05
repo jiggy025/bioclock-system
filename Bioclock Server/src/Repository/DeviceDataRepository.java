@@ -1,0 +1,61 @@
+package Repository;
+
+import Config.HibernateUtil;
+import Service.IDeviceDataRepository;
+import bioclock.server.entity.BioDevice;
+import java.util.List;
+import org.hibernate.Session;
+import org.hibernate.SessionFactory;
+import org.hibernate.Transaction;
+
+public class DeviceDataRepository implements IDeviceDataRepository {
+    
+    private SessionFactory sessionFactory;
+    
+    public DeviceDataRepository(SessionFactory sessionFactory) {
+        this.sessionFactory = sessionFactory;
+    }
+    
+    @Override
+    public List<BioDevice> getAllDevices() {
+        Session session = sessionFactory.openSession();
+        Transaction tx = null;
+        List<BioDevice> devices = null;
+
+        try {
+            tx = session.beginTransaction();
+            devices = session.createQuery("FROM BioDevice").list();
+            tx.commit();
+            return devices;
+            
+        } catch (Throwable e) {
+            if (tx != null) 
+                tx.rollback();
+            throw e;
+        } finally {
+            session.close();
+        }
+    }
+    
+    @Override
+    public BioDevice findById(int id) {
+        Session session = sessionFactory.openSession();
+        Transaction tx = null;
+        BioDevice device = null;
+        
+        try {
+            tx = session.beginTransaction();
+            
+            device = (BioDevice) session.get(BioDevice.class, id);
+            
+            tx.commit();
+            return device;
+        } catch (Throwable e) {
+            if (tx != null)
+                tx.rollback();
+            throw e;
+        } finally {
+            session.close();
+        }
+    }
+}

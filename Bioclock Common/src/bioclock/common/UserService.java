@@ -7,4 +7,6 @@ import java.util.List;
 
 public interface UserService extends Remote {
     List<UserDataDTO> getAllUsers() throws RemoteException;
+    
+    void addEmployee(UserDataDTO user) throws RemoteException;
 }
