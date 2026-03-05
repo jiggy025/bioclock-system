@@ -1,6 +1,5 @@
 package Repository;
 
-import Config.HibernateUtil;
 import Service.IDeviceDataRepository;
 import bioclock.server.entity.BioDevice;
 import java.util.List;
@@ -79,6 +78,31 @@ public class DeviceDataRepository implements IDeviceDataRepository {
             tx.commit();
         } catch (Exception e) {
             if(tx != null) 
+                tx.rollback();
+            throw e;
+        } finally {
+            session.close();
+        }
+    }
+    
+    @Override
+    public int getEmployeeCountByDevice(int deviceId) {
+        Session session = sessionFactory.openSession();
+        
+        Transaction tx = null;
+        
+        try {
+            tx = session.beginTransaction();
+            
+            Long count = (Long) session.createQuery(
+                    "SELECT COUNT(u) FROM UserData u WHERE u.device.id = :deviceId")
+                    .setParameter("deviceId", deviceId)
+                    .uniqueResult();
+            
+            tx.commit();
+            return count.intValue();
+        } catch (Exception e) {
+            if (tx != null) 
                 tx.rollback();
             throw e;
         } finally {

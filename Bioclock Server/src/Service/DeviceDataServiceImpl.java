@@ -28,6 +28,9 @@ public class DeviceDataServiceImpl implements IDeviceDataService{
             dto.setLocation(device.getLocation());
             dto.setStatus(device.getStatus());
             
+            int count = repository.getEmployeeCountByDevice(device.getId());
+            dto.setEmployeeCount(count);
+            
             deviceDTOS.add(dto);
         }
         

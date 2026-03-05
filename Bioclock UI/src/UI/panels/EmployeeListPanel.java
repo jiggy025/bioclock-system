@@ -1,5 +1,6 @@
 package UI.panels;
 
+import UI.Helper.ScrollPaneHelper;
 import bioclock.dto.UserDataDTO;
 import java.awt.BorderLayout;
 import java.awt.CardLayout;
@@ -58,42 +59,8 @@ public class EmployeeListPanel extends JPanel {
         listContainer.setBorder(
             BorderFactory.createEmptyBorder(10, 0, 20, 0)
         );
-
-        JScrollPane scrollPane = new JScrollPane(listContainer);
-        scrollPane.setBorder(null);
-        scrollPane.getVerticalScrollBar().setUnitIncrement(16);
-        scrollPane.setVerticalScrollBarPolicy(JScrollPane.VERTICAL_SCROLLBAR_AS_NEEDED);
-        scrollPane.setHorizontalScrollBarPolicy(JScrollPane.HORIZONTAL_SCROLLBAR_NEVER);
-        scrollPane.getVerticalScrollBar().setPreferredSize(
-            new Dimension(6, Integer.MAX_VALUE)
-        );
-
-        scrollPane.getVerticalScrollBar().setUI(new BasicScrollBarUI() {
-
-            @Override
-            protected void configureScrollBarColors() {
-                thumbColor = new Color(210, 210, 210);
-                trackColor = new Color(242, 242, 242);
-            }
-
-            @Override
-            protected JButton createDecreaseButton(int orientation) {
-                return createZeroButton();
-            }
-
-            @Override
-            protected JButton createIncreaseButton(int orientation) {
-                return createZeroButton();
-            }
-
-            private JButton createZeroButton() {
-                JButton button = new JButton();
-                button.setPreferredSize(new Dimension(0, 0));
-                button.setMinimumSize(new Dimension(0, 0));
-                button.setMaximumSize(new Dimension(0, 0));
-                return button;
-            }
-        });
+        
+        JScrollPane scrollPane = ScrollPaneHelper.createStyledScrollPane(listContainer);
 
         listContainer.setAlignmentX(Component.LEFT_ALIGNMENT);
         

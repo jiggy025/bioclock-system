@@ -30,7 +30,7 @@ public class BioCard extends JPanel {
         
         setLayout(new BorderLayout());
         setBorder(BorderFactory.createEmptyBorder(20, 25, 20, 20));
-        setMaximumSize(new Dimension(Integer.MAX_VALUE, 120));
+        setMaximumSize(new Dimension(Integer.MAX_VALUE, 140));
         setAlignmentX(Component.CENTER_ALIGNMENT);
         setOpaque(false);
         
@@ -42,6 +42,7 @@ public class BioCard extends JPanel {
         JLabel bioLabel = new JLabel(device.getName());
         JLabel descLabel = new JLabel(device.getLocation());
         final JLabel statusLabel = new JLabel("Status: " + device.getStatus());
+        JLabel empLabelCount = new JLabel("Employee(s): " + device.getEmployeeCount());
         
         bioLabel.setFont(new Font("Segoe UI", Font.BOLD, 18));
         bioLabel.setForeground(new Color(40, 40, 40));
@@ -49,12 +50,13 @@ public class BioCard extends JPanel {
         bioLabel.setFont(new Font("Segoe UI", Font.BOLD, 14));
         bioLabel.setForeground(new Color(120, 120, 120));
         
-        
         textPanel.add(bioLabel);
         textPanel.add(Box.createVerticalStrut(8));
         textPanel.add(descLabel);
         textPanel.add(Box.createVerticalStrut(8));
         textPanel.add(statusLabel);
+        textPanel.add(Box.createVerticalStrut(8));
+        textPanel.add(empLabelCount);
         
         add(textPanel, BorderLayout.CENTER);
         
@@ -68,6 +70,9 @@ public class BioCard extends JPanel {
         this.setCursor(new Cursor(Cursor.HAND_CURSOR));
         
         ToggleSwitch toggle = new ToggleSwitch();
+        
+        
+        toggle.setState("Online".equals(device.getStatus()));
         
         toggle.setToggleListener(new IToggleListener() {
             @Override
@@ -85,7 +90,7 @@ public class BioCard extends JPanel {
                 deviceStatusListener.onStatusChange(device.getId(), deviceStatus);
             }
         });
-        
+
         JPanel toggleWrapper = new JPanel(new BorderLayout());
         
         toggleWrapper.setOpaque(false);
@@ -124,6 +129,12 @@ public class BioCard extends JPanel {
         
         public void setToggleListener(IToggleListener listener) {
             this.listener = listener;
+        }
+        
+        public void setState(boolean state) {
+            this.on = state;
+            this.progress = state ? 1f : 0f;
+            repaint();
         }
         
         public ToggleSwitch() {

@@ -8,16 +8,24 @@ public class DeviceDTO implements Serializable {
     private String name;
     private String location;
     private String status;
+    private int employeeCount;
+
+    public int getEmployeeCount() {
+        return employeeCount;
+    }
+
+    public void setEmployeeCount(int employeeCount) {
+        this.employeeCount = employeeCount;
+    }
 
     public DeviceDTO() {
         
     }
     
-    public DeviceDTO(int id, String name, String location, String status) {
+    public DeviceDTO(int id, String name, String location) {
         this.id = id;
         this.name = name;
         this.location = location;
-        this.status = status;
     }
     
     public int getId() {

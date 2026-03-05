@@ -2,6 +2,7 @@ package UI.Layout;
 
 import UI.Components.BioCard;
 import UI.Controller.DeviceController;
+import UI.Helper.ScrollPaneHelper;
 import UI.Listener.IDeviceClickListener;
 import UI.Listener.IDeviceStatusListener;
 import UI.panels.SearchPanel;
@@ -41,7 +42,7 @@ public class DashboardView extends JPanel{
 
         wrapperPanel.add(Box.createVerticalGlue());
 
-        JScrollPane scrollPane = new JScrollPane(wrapperPanel);
+        JScrollPane scrollPane = ScrollPaneHelper.createStyledScrollPane(wrapperPanel);
         scrollPane.setBorder(null);
         scrollPane.getVerticalScrollBar().setUnitIncrement(16);
         scrollPane.getViewport().setBackground(Color.WHITE);

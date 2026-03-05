@@ -9,4 +9,6 @@ public interface IDeviceDataRepository {
     BioDevice findById(int id);
     
     void updateStatus(int deviceId, String status);
+    
+    int getEmployeeCountByDevice(int deviceId);
 }
