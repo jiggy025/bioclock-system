@@ -26,13 +26,16 @@ import javax.swing.Timer;
 
 public class BioCard extends JPanel {
     
+    private boolean hovered = false;
+    
     public BioCard(final DeviceDTO device, final IDeviceClickListener listener, final IDeviceStatusListener deviceStatusListener){
         
         setLayout(new BorderLayout());
         setBorder(BorderFactory.createEmptyBorder(20, 25, 20, 20));
         setMaximumSize(new Dimension(Integer.MAX_VALUE, 140));
         setAlignmentX(Component.CENTER_ALIGNMENT);
-        setOpaque(false);
+        setOpaque(true);
+        setBackground(Color.WHITE);
         
         JPanel textPanel = new JPanel();
         textPanel.setLayout(new BoxLayout(textPanel, BoxLayout.Y_AXIS));
@@ -69,9 +72,21 @@ public class BioCard extends JPanel {
         
         this.setCursor(new Cursor(Cursor.HAND_CURSOR));
         
+        addMouseListener(new MouseAdapter() {
+            @Override
+            public void mouseEntered(MouseEvent e) {
+                hovered = true;
+                repaint();
+            }
+            
+            @Override
+            public void mouseExited(MouseEvent e){
+                hovered = false;
+                repaint();
+            }
+        });
         ToggleSwitch toggle = new ToggleSwitch();
-        
-        
+
         toggle.setState("Online".equals(device.getStatus()));
         
         toggle.setToggleListener(new IToggleListener() {
@@ -101,25 +116,36 @@ public class BioCard extends JPanel {
     }
     
     
-        @Override
-        protected void paintComponent(Graphics g) {
-            Graphics2D g2 = (Graphics2D) g.create();
+    @Override
+    protected void paintComponent(Graphics g) {
+        
+        super.paintComponent(g);
+        
+        Graphics2D g2 = (Graphics2D) g.create();
             
-            g2.setRenderingHint(RenderingHints.KEY_ANTIALIASING,
+        g2.setRenderingHint(RenderingHints.KEY_ANTIALIASING,
                     RenderingHints.VALUE_ANTIALIAS_ON);
             
-            int arc = 20;
-            
+        int arc = 20;
+        
+        if (hovered) {
+            g2.setColor(new Color(0, 0, 0, 25));
+        } else {
             g2.setColor(new Color(0, 0, 0, 15));
-            g2.fillRoundRect(4, 4, getWidth() - 8, getHeight() - 4, arc, arc);
-            
-            g2.setColor(Color.WHITE);
-            g2.fillRoundRect(0, 0, getWidth() - 8, getHeight() - 8, arc, arc);
-            
-            g2.dispose();
-            
-            super.paintComponent(g);
         }
+        
+        g2.fillRoundRect(4, 4, getWidth() - 8, getHeight() - 4, arc, arc);
+        
+        if (hovered) {
+            g2.setColor(new Color(245, 247, 250));
+        } else {
+            g2.setColor(Color.WHITE);
+        }
+        
+        g2.fillRoundRect(0, 0, getWidth() - 8, getHeight() - 8, arc, arc);
+            
+        g2.dispose();
+    }
     class ToggleSwitch extends JPanel {
         
         private boolean on = false;

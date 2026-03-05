@@ -7,6 +7,7 @@ import UI.MainUI;
 import bioclock.dto.DeviceDTO;
 import bioclock.dto.UserDataDTO;
 import java.util.List;
+import javax.swing.SwingUtilities;
 import javax.swing.SwingWorker;
 
 public class ApplicationController {
@@ -70,7 +71,12 @@ public class ApplicationController {
         
         currentDeviceId = deviceId;
         
-        view.showLoading(true);
+        SwingUtilities.invokeLater(new Runnable(){
+            @Override
+            public void run() {
+                view.showLoading(true);
+            }
+        });
         
         new SwingWorker<List<UserDataDTO>, Void>() {
             
@@ -108,6 +114,8 @@ public class ApplicationController {
                 controller.addEmployees(user);
 
                 loadEmployees(user.getDeviceId()); // refresh table
+                
+                loadDevices(); //refresh emp count
             }
         });
     }

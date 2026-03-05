@@ -39,6 +39,7 @@ public class DashboardView extends JPanel{
         wrapperPanel = new JPanel();
         wrapperPanel.setLayout(new BoxLayout(wrapperPanel, BoxLayout.Y_AXIS));
         wrapperPanel.setBackground(Color.WHITE);
+        wrapperPanel.setOpaque(true);
 
         wrapperPanel.add(Box.createVerticalGlue());
 

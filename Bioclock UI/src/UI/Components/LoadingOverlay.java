@@ -5,6 +5,8 @@ import java.awt.Color;
 import java.awt.Component;
 import java.awt.Dimension;
 import java.awt.Font;
+import java.awt.Graphics;
+import java.awt.Graphics2D;
 import java.awt.GridBagLayout;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseMotionAdapter;
@@ -17,6 +19,7 @@ import javax.swing.JProgressBar;
 public class LoadingOverlay extends JPanel {
 
     public LoadingOverlay() {
+        setOpaque(false);
         setLayout(new GridBagLayout());   // center everything
         setBackground(new Color(255,255,255,180)); // transparent overlay
 
@@ -45,5 +48,18 @@ public class LoadingOverlay extends JPanel {
         box.add(label);
 
         add(box);
+    }
+    
+    @Override
+    protected void paintComponent(Graphics g) {
+
+        Graphics2D g2 = (Graphics2D) g.create();
+
+        g2.setColor(new Color(224, 224, 224, 160)); // grey dim effect
+        g2.fillRect(0,0,getWidth(),getHeight());
+
+        g2.dispose();
+
+        super.paintComponent(g);
     }
 }

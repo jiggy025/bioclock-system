@@ -85,7 +85,7 @@ public class MainUI extends javax.swing.JFrame {
                 }
             }
             
-    });
+        });
         
         JPanel dashboardPage = new JPanel(new BorderLayout());
         dashboardPage.add(sideBar, BorderLayout.WEST);
