@@ -7,4 +7,6 @@ public interface IDeviceDataRepository {
     List<BioDevice> getAllDevices();
     
     BioDevice findById(int id);
+    
+    void updateStatus(int deviceId, String status);
 }

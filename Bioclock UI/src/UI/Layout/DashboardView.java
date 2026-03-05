@@ -2,16 +2,12 @@ package UI.Layout;
 
 import UI.Components.BioCard;
 import UI.Controller.DeviceController;
-import UI.Controller.EmployeeController;
 import UI.Listener.IDeviceClickListener;
-import UI.panels.EmployeeListPanel;
+import UI.Listener.IDeviceStatusListener;
 import UI.panels.SearchPanel;
 import bioclock.dto.DeviceDTO;
-import bioclock.dto.UserDataDTO;
 import java.awt.BorderLayout;
-import java.awt.CardLayout;
 import java.awt.Color;
-import java.rmi.RemoteException;
 import java.util.List;
 import javax.swing.BorderFactory;
 import javax.swing.Box;
@@ -24,7 +20,7 @@ public class DashboardView extends JPanel{
     private final DeviceController controller;
     private JPanel wrapperPanel;
     
-    public DashboardView (DeviceController controller, IDeviceClickListener listener) {
+    public DashboardView (DeviceController controller, IDeviceClickListener listener, IDeviceStatusListener statusListener) {
         
         this.controller = controller;
         
@@ -53,21 +49,21 @@ public class DashboardView extends JPanel{
         add(headerPanel, BorderLayout.NORTH);
         add(scrollPane, BorderLayout.CENTER);
         
-        loadDevices(listener);
+        loadDevices(listener, statusListener);
     }
     
-    public void loadDevices(IDeviceClickListener listener) {
+    public void loadDevices(IDeviceClickListener listener, IDeviceStatusListener statusListener) {
         
         List<DeviceDTO> devices = controller.loadDevices();
-        setDevices(devices, listener); 
+        setDevices(devices, listener, statusListener); 
         
     }
     
-    public void setDevices(List<DeviceDTO> devices, IDeviceClickListener listener) {
+    public void setDevices(List<DeviceDTO> devices, IDeviceClickListener listener, IDeviceStatusListener statusListener) {
         wrapperPanel.removeAll();
         
         for(DeviceDTO device : devices) {
-            wrapperPanel.add(new BioCard(device, listener));
+            wrapperPanel.add(new BioCard(device, listener, statusListener));
         }
         
         wrapperPanel.revalidate();

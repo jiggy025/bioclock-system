@@ -4,6 +4,7 @@ import Config.HibernateUtil;
 import Service.IDeviceDataRepository;
 import bioclock.server.entity.BioDevice;
 import java.util.List;
+import org.hibernate.Query;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 import org.hibernate.Transaction;
@@ -52,6 +53,32 @@ public class DeviceDataRepository implements IDeviceDataRepository {
             return device;
         } catch (Throwable e) {
             if (tx != null)
+                tx.rollback();
+            throw e;
+        } finally {
+            session.close();
+        }
+    }
+    
+    public void updateStatus(int deviceId, String status) {
+        Session session = sessionFactory.openSession();
+        
+        Transaction tx = null;
+        
+        try {
+            tx = session.beginTransaction();
+            
+            Query query = session.createQuery(
+                "UPDATE BioDevice SET status = :status WHERE id = :id");
+            
+            query.setParameter("status", status);
+            query.setParameter("id", deviceId);
+            
+            query.executeUpdate();
+            
+            tx.commit();
+        } catch (Exception e) {
+            if(tx != null) 
                 tx.rollback();
             throw e;
         } finally {

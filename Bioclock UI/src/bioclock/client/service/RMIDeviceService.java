@@ -20,4 +20,12 @@ public class RMIDeviceService {
             throw new RuntimeException(e);
         }
     }
+    
+    public void updateStatus(int deviceId, String status) {
+        try {
+            remoteService.updateStatus(deviceId, status);
+        } catch (RemoteException e) {
+            e.printStackTrace();
+        }
+    }
 }

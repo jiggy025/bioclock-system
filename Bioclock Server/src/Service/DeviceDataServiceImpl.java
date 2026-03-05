@@ -26,11 +26,16 @@ public class DeviceDataServiceImpl implements IDeviceDataService{
             dto.setId(device.getId());
             dto.setName(device.getName());
             dto.setLocation(device.getLocation());
+            dto.setStatus(device.getStatus());
             
             deviceDTOS.add(dto);
         }
         
         return deviceDTOS;
     }
-    
+
+    @Override
+    public void updateStatus(int deviceId, String status) {
+        repository.updateStatus(deviceId, status);
+    }
 }

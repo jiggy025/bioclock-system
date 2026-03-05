@@ -2,6 +2,7 @@ package UI.Controller;
 
 import UI.Dialog.AddEmployeeDialog;
 import UI.Listener.IDeviceClickListener;
+import UI.Listener.IDeviceStatusListener;
 import UI.MainUI;
 import bioclock.dto.DeviceDTO;
 import bioclock.dto.UserDataDTO;
@@ -36,6 +37,13 @@ public class ApplicationController {
             public void run() {
                 openAddUserDialog();
             }
+        });
+        
+        view.setOnDeviceStatusChange(new IDeviceStatusListener() {
+           @Override
+           public void onStatusChange(int deviceId, String status){
+               deviceController.updateStatus(deviceId, status);
+           }
         });
     }
     
@@ -102,5 +110,9 @@ public class ApplicationController {
                 loadEmployees(user.getDeviceId()); // refresh table
             }
         });
+    }
+    
+    public void updateDeviceStatus(int deviceId, String status) {
+        deviceController.updateStatus(deviceId, status);
     }
 }

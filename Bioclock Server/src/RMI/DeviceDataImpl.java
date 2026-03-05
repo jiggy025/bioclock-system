@@ -19,5 +19,9 @@ public class DeviceDataImpl extends UnicastRemoteObject implements DeviceService
     public List<DeviceDTO> getAllDevices() throws RemoteException {
         return deviceService.getAllDevicesDTO();
     }
-    
+
+    @Override
+    public void updateStatus(int deviceId, String status) {
+        deviceService.updateStatus(deviceId, status);
+    }
 }

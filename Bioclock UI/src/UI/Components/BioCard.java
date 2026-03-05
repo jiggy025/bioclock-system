@@ -1,6 +1,8 @@
 package UI.Components;
 
 import UI.Listener.IDeviceClickListener;
+import UI.Listener.IDeviceStatusListener;
+import UI.Listener.IToggleListener;
 import bioclock.dto.DeviceDTO;
 import java.awt.BorderLayout;
 import java.awt.Color;
@@ -24,7 +26,7 @@ import javax.swing.Timer;
 
 public class BioCard extends JPanel {
     
-    public BioCard(final DeviceDTO device, final IDeviceClickListener listener){
+    public BioCard(final DeviceDTO device, final IDeviceClickListener listener, final IDeviceStatusListener deviceStatusListener){
         
         setLayout(new BorderLayout());
         setBorder(BorderFactory.createEmptyBorder(20, 25, 20, 20));
@@ -39,6 +41,7 @@ public class BioCard extends JPanel {
         
         JLabel bioLabel = new JLabel(device.getName());
         JLabel descLabel = new JLabel(device.getLocation());
+        final JLabel statusLabel = new JLabel("Status: " + device.getStatus());
         
         bioLabel.setFont(new Font("Segoe UI", Font.BOLD, 18));
         bioLabel.setForeground(new Color(40, 40, 40));
@@ -46,9 +49,12 @@ public class BioCard extends JPanel {
         bioLabel.setFont(new Font("Segoe UI", Font.BOLD, 14));
         bioLabel.setForeground(new Color(120, 120, 120));
         
+        
         textPanel.add(bioLabel);
         textPanel.add(Box.createVerticalStrut(8));
         textPanel.add(descLabel);
+        textPanel.add(Box.createVerticalStrut(8));
+        textPanel.add(statusLabel);
         
         add(textPanel, BorderLayout.CENTER);
         
@@ -63,6 +69,23 @@ public class BioCard extends JPanel {
         
         ToggleSwitch toggle = new ToggleSwitch();
         
+        toggle.setToggleListener(new IToggleListener() {
+            @Override
+            public void onToggle(boolean status) {
+                String deviceStatus;
+                
+                if(status){
+                    deviceStatus = "Online";
+                } else {
+                    deviceStatus = "Offline";
+                }
+                
+                statusLabel.setText("Status: " + deviceStatus);
+                
+                deviceStatusListener.onStatusChange(device.getId(), deviceStatus);
+            }
+        });
+        
         JPanel toggleWrapper = new JPanel(new BorderLayout());
         
         toggleWrapper.setOpaque(false);
@@ -71,6 +94,7 @@ public class BioCard extends JPanel {
         
         add(toggleWrapper, BorderLayout.EAST);
     }
+    
     
         @Override
         protected void paintComponent(Graphics g) {
@@ -96,6 +120,12 @@ public class BioCard extends JPanel {
         private boolean on = false;
         private float progress = 0f;
         
+        private IToggleListener listener;
+        
+        public void setToggleListener(IToggleListener listener) {
+            this.listener = listener;
+        }
+        
         public ToggleSwitch() {
             setPreferredSize(new Dimension(70, 50));
             setOpaque(false);
@@ -105,18 +135,26 @@ public class BioCard extends JPanel {
                 @Override
                 public void mouseClicked(MouseEvent e) {
                         on = !on;
-
+                        
+                        if(listener != null) {
+                            listener.onToggle(on);
+                        }
+                        
                         final float start = progress;
                         final float end = on ? 1f : 0f;
 
                         Timer timer = new Timer(10, null);
+                        
                         timer.addActionListener(new ActionListener() {
+                            
                             float fraction = 0f;
+                            
                             @Override
                             public void actionPerformed(ActionEvent e) {
                                 fraction += 0.1f;
 
                                 progress = start + (end - start) * fraction;
+                                
                                 repaint();
 
                                 if (fraction >= 1f) {

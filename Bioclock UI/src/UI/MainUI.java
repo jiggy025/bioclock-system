@@ -7,6 +7,7 @@ import UI.Layout.SideBar;
 import UI.Controller.EmployeeController;
 import UI.Dialog.AddEmployeeDialog;
 import UI.Listener.IDeviceClickListener;
+import UI.Listener.IDeviceStatusListener;
 import UI.panels.EmployeeListPanel;
 import bioclock.dto.DeviceDTO;
 import bioclock.dto.UserDataDTO;
@@ -24,12 +25,15 @@ public class MainUI extends javax.swing.JFrame {
     private final CardLayout mainLayout;
     
     private IDeviceClickListener onEmployeeCardClick;
+    private IDeviceStatusListener onDeviceStatusChange;
+    
     private Runnable setOnAddUserclick;
     
     private LoadingOverlay loadingOverlay;
 
     private static DeviceController deviceController;
     private static EmployeeController employeeController;
+    
     
     private SideBar sideBar;
     private DashboardView dashBoardView;
@@ -72,7 +76,16 @@ public class MainUI extends javax.swing.JFrame {
                     onEmployeeCardClick.onDeviceClick(deviceId);
                 }
             }
-        });
+        },
+        new IDeviceStatusListener() {
+            @Override
+            public void onStatusChange(int deviceId, String status) {
+                if(onDeviceStatusChange != null) {
+                    onDeviceStatusChange.onStatusChange(deviceId, status);
+                }
+            }
+            
+    });
         
         JPanel dashboardPage = new JPanel(new BorderLayout());
         dashboardPage.add(sideBar, BorderLayout.WEST);
@@ -149,9 +162,17 @@ public class MainUI extends javax.swing.JFrame {
                     onEmployeeCardClick.onDeviceClick(DeviceId);
                 }
             }
+        },
+        new IDeviceStatusListener() {
+            @Override
+            public void onStatusChange(int deviceId, String status) {
+                if(onDeviceStatusChange != null) {
+                    onDeviceStatusChange.onStatusChange(deviceId, status);
+                }
+            }
             
-        });
-    }
+    });
+}
     
     public void showAddUserDialog(List<DeviceDTO> devices,
                               AddEmployeeDialog.SaveListener listener) {
@@ -161,7 +182,12 @@ public class MainUI extends javax.swing.JFrame {
 
             dialog.setVisible(true);
     }
+    
+    public void setOnDeviceStatusChange(IDeviceStatusListener listener) {
+        this.onDeviceStatusChange = listener;
+    }
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JPanel mainContainer;
     // End of variables declaration//GEN-END:variables
+
 }

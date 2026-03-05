@@ -7,4 +7,6 @@ import java.util.List;
 
 public interface DeviceService extends Remote {
     List<DeviceDTO> getAllDevices() throws RemoteException;
+    
+    void updateStatus(int deviceId, String status) throws RemoteException;
 }

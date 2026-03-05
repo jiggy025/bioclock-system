@@ -21,6 +21,9 @@ public class BioDevice {
     @Column(name="location")
     private String location;
     
+    @Column(name="status")
+    private String status;
+    
 
     public int getId() {
         return id;
@@ -44,5 +47,19 @@ public class BioDevice {
 
     public void setLocation(String location) {
         this.location = location;
+    }
+
+    /**
+     * @return the status
+     */
+    public String getStatus() {
+        return status;
+    }
+
+    /**
+     * @param status the status to set
+     */
+    public void setStatus(String status) {
+        this.status = status;
     }
 }

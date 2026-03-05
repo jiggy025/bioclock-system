@@ -15,4 +15,8 @@ public class DeviceController {
     public List<DeviceDTO> loadDevices() {
         return service.getAllDevices();
     }
+    
+    public void updateStatus(int deviceId, String status){
+        service.updateStatus(deviceId, status);
+    }
 }
