@@ -17,6 +17,7 @@ This project is mainly a **learning and development project** focused on buildin
   <img src="docs/dashboardUI.png" width="32%">
   <img src="docs/addUserDialog.png" width="31%">
   <img src="docs/testList.png" width="31%">
+  <img src="docs/toggleSwitch.png" width="31%">
 </p>
 
 Dashboard showing available biometric devices and management controls.
