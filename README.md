@@ -1,9 +1,3 @@
-Here is an **updated README** including your **exact environment versions** (Java, Hibernate, NetBeans). I also cleaned the structure a bit so it looks more like a **real open-source project README** while still clearly saying it's **work in progress**.
-
-You can paste this into `README.md`.
-
----
-
 # Bioclock System
 
 ![Java](https://img.shields.io/badge/Java-7-orange)
