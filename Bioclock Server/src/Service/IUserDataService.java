@@ -7,4 +7,6 @@ public interface IUserDataService {
     List<UserDataDTO> getAllUsersDTO();
 
     void addEmployee(UserDataDTO user);
+    
+    List<UserDataDTO> loadEmployeesByDevice(int deviceId);
 }

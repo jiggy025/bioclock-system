@@ -28,13 +28,14 @@ public class AddEmployeeDialog extends javax.swing.JDialog {
     private JButton saveButton;
     private JButton cancelButton;
     
+    
     public interface SaveListener {
-        void onSave(UserDataDTO user);
+            void onSave(UserDataDTO user);
     }
     
     public AddEmployeeDialog(java.awt.Frame parent, List<DeviceDTO> devices, final SaveListener listener) {
         super(parent, "Add Employee", true);
-        
+
         setLayout(new BorderLayout());
         setSize(350, 250);
         setLocationRelativeTo(parent);

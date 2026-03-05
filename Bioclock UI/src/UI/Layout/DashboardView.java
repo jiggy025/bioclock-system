@@ -3,6 +3,7 @@ package UI.Layout;
 import UI.Components.BioCard;
 import UI.Controller.DeviceController;
 import UI.Controller.EmployeeController;
+import UI.Listener.IDeviceClickListener;
 import UI.panels.EmployeeListPanel;
 import UI.panels.SearchPanel;
 import bioclock.dto.DeviceDTO;
@@ -23,7 +24,7 @@ public class DashboardView extends JPanel{
     private final DeviceController controller;
     private JPanel wrapperPanel;
     
-    public DashboardView (DeviceController controller, Runnable onCardClick) {
+    public DashboardView (DeviceController controller, IDeviceClickListener listener) {
         
         this.controller = controller;
         
@@ -52,21 +53,21 @@ public class DashboardView extends JPanel{
         add(headerPanel, BorderLayout.NORTH);
         add(scrollPane, BorderLayout.CENTER);
         
-        loadDevices(onCardClick);
+        loadDevices(listener);
     }
     
-    public void loadDevices(Runnable onCardClick) {
+    public void loadDevices(IDeviceClickListener listener) {
         
         List<DeviceDTO> devices = controller.loadDevices();
-        setDevices(devices, onCardClick); 
+        setDevices(devices, listener); 
         
     }
     
-    public void setDevices(List<DeviceDTO> devices, Runnable onCardClick) {
+    public void setDevices(List<DeviceDTO> devices, IDeviceClickListener listener) {
         wrapperPanel.removeAll();
         
         for(DeviceDTO device : devices) {
-            wrapperPanel.add(new BioCard(device.getName(), device.getLocation(), onCardClick));
+            wrapperPanel.add(new BioCard(device, listener));
         }
         
         wrapperPanel.revalidate();

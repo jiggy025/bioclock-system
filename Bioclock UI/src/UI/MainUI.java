@@ -6,6 +6,7 @@ import UI.Layout.DashboardView;
 import UI.Layout.SideBar;
 import UI.Controller.EmployeeController;
 import UI.Dialog.AddEmployeeDialog;
+import UI.Listener.IDeviceClickListener;
 import UI.panels.EmployeeListPanel;
 import bioclock.dto.DeviceDTO;
 import bioclock.dto.UserDataDTO;
@@ -22,7 +23,7 @@ public class MainUI extends javax.swing.JFrame {
     private final EmployeeListPanel employeeListPanel;
     private final CardLayout mainLayout;
     
-    private Runnable onEmployeeCardClick;
+    private IDeviceClickListener onEmployeeCardClick;
     private Runnable setOnAddUserclick;
     
     private LoadingOverlay loadingOverlay;
@@ -64,11 +65,11 @@ public class MainUI extends javax.swing.JFrame {
             }
         });  
 
-        dashBoardView = new DashboardView(deviceController, new Runnable(){
+        dashBoardView = new DashboardView(deviceController, new IDeviceClickListener(){
             @Override
-            public void run() {
+            public void onDeviceClick(int deviceId) {
                 if(onEmployeeCardClick != null) {
-                    onEmployeeCardClick.run();
+                    onEmployeeCardClick.onDeviceClick(deviceId);
                 }
             }
         });
@@ -114,7 +115,7 @@ public class MainUI extends javax.swing.JFrame {
         });
     }
     
-    public void setOnEmployeeCardClick(Runnable action) {
+    public void setOnEmployeeCardClick(IDeviceClickListener action) {
         this.onEmployeeCardClick = action;
     }
     
@@ -141,7 +142,15 @@ public class MainUI extends javax.swing.JFrame {
     }
     
     public void setDevices(List<DeviceDTO> devices) {
-        dashBoardView.setDevices(devices, onEmployeeCardClick);
+        dashBoardView.setDevices(devices, new IDeviceClickListener(){
+            @Override
+            public void onDeviceClick(int DeviceId) {
+                if(onEmployeeCardClick != null) {
+                    onEmployeeCardClick.onDeviceClick(DeviceId);
+                }
+            }
+            
+        });
     }
     
     public void showAddUserDialog(List<DeviceDTO> devices,

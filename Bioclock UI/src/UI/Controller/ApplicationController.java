@@ -1,6 +1,7 @@
 package UI.Controller;
 
 import UI.Dialog.AddEmployeeDialog;
+import UI.Listener.IDeviceClickListener;
 import UI.MainUI;
 import bioclock.dto.DeviceDTO;
 import bioclock.dto.UserDataDTO;
@@ -12,6 +13,7 @@ public class ApplicationController {
     private final MainUI view;
     private final EmployeeController controller;
     private final DeviceController deviceController;
+    private int currentDeviceId;
     
     public ApplicationController(MainUI view, EmployeeController controller, DeviceController deviceController) {
         this.view = view;
@@ -22,10 +24,10 @@ public class ApplicationController {
     }
     
     private void wireEvents() {
-        view.setOnEmployeeCardClick(new Runnable(){
+        view.setOnEmployeeCardClick(new IDeviceClickListener(){
             @Override
-            public void run() {
-                loadEmployees();
+            public void onDeviceClick(int deviceId) {
+                loadEmployees(deviceId);
             }
         });
         
@@ -56,7 +58,9 @@ public class ApplicationController {
         }.execute();
     }
     
-    private void loadEmployees() {
+    private void loadEmployees(int deviceId) {
+        
+        currentDeviceId = deviceId;
         
         view.showLoading(true);
         
@@ -68,7 +72,7 @@ public class ApplicationController {
                 } catch (InterruptedException e) {
                     e.printStackTrace();
                 }
-                return controller.loadEmployees();
+                return controller.loadEmployeesByDevice(currentDeviceId);
             }
             
             protected void done(){
@@ -95,7 +99,7 @@ public class ApplicationController {
 
                 controller.addEmployees(user);
 
-                loadEmployees(); // refresh table
+                loadEmployees(user.getDeviceId()); // refresh table
             }
         });
     }

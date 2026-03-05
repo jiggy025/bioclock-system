@@ -57,4 +57,24 @@ public class HibernateRepository implements IUserDataRepository {
         }
     }
     
+    public List<UserData> findByDeviceId(int deviceId) {
+        Session session = sessionFactory.openSession();
+        List<UserData> users = null;
+        Transaction tx = null;
+        
+        try {
+            tx = session.beginTransaction();
+            users = (List<UserData>) session.createQuery("FROM UserData WHERE device.id = :deviceId")
+                    .setParameter("deviceId", deviceId)
+                    .list();
+            tx.commit();
+            return users;
+        } catch (Throwable e) {
+            if (tx != null)
+                tx.rollback();
+            throw e;
+        } finally {
+            session.close();
+        }
+    }
 }

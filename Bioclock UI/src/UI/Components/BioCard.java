@@ -1,5 +1,7 @@
 package UI.Components;
 
+import UI.Listener.IDeviceClickListener;
+import bioclock.dto.DeviceDTO;
 import java.awt.BorderLayout;
 import java.awt.Color;
 import java.awt.Component;
@@ -22,7 +24,8 @@ import javax.swing.Timer;
 
 public class BioCard extends JPanel {
     
-    public BioCard(String title, String description, final Runnable onClick){
+    public BioCard(final DeviceDTO device, final IDeviceClickListener listener){
+        
         setLayout(new BorderLayout());
         setBorder(BorderFactory.createEmptyBorder(20, 25, 20, 20));
         setMaximumSize(new Dimension(Integer.MAX_VALUE, 120));
@@ -34,8 +37,8 @@ public class BioCard extends JPanel {
         textPanel.setBorder(BorderFactory.createEmptyBorder(6, 10, 6, 10));
         textPanel.setOpaque(false);
         
-        JLabel bioLabel = new JLabel(title);
-        JLabel descLabel = new JLabel(description);
+        JLabel bioLabel = new JLabel(device.getName());
+        JLabel descLabel = new JLabel(device.getLocation());
         
         bioLabel.setFont(new Font("Segoe UI", Font.BOLD, 18));
         bioLabel.setForeground(new Color(40, 40, 40));
@@ -52,9 +55,7 @@ public class BioCard extends JPanel {
         this.addMouseListener(new MouseAdapter(){
             @Override
             public void mouseClicked(MouseEvent e) {
-                if (onClick != null) {
-                    onClick.run();
-                } 
+                listener.onDeviceClick(device.getId());
            }
         });
         

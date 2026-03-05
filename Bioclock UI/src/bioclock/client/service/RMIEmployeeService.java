@@ -32,4 +32,15 @@ public class RMIEmployeeService implements EmployeeService {
             throw new RuntimeException("Failed to add employee", e);
         }
     }
+
+    @Override
+    public List<UserDataDTO> loadEmployeesByDevice(int deviceId) {
+        
+        try {
+            return remoteService.loadEmployeesByDevice(deviceId);
+        } catch (RemoteException e) {
+            e.printStackTrace();
+            return Collections.emptyList();
+        }
+    }
 }

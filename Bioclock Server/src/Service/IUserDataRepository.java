@@ -7,4 +7,6 @@ public interface IUserDataRepository {
     List<UserData> findAll();
     
     void save(UserData user);
+    
+    List<UserData> findByDeviceId(int deviceId);
 }

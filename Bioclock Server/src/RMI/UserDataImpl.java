@@ -27,4 +27,9 @@ public class UserDataImpl extends UnicastRemoteObject implements UserService {
     public void addEmployee(UserDataDTO user) throws RemoteException {
         userDataService.addEmployee(user);
     }
+
+    @Override
+    public List<UserDataDTO> loadEmployeesByDevice(int deviceId) throws RemoteException {
+        return userDataService.loadEmployeesByDevice(deviceId);
+    }
 }

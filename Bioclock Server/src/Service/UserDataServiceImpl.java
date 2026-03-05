@@ -35,14 +35,35 @@ public class UserDataServiceImpl implements IUserDataService {
         List<UserDataDTO> dtoList = new ArrayList<UserDataDTO>();
 
         for (UserData user : users) {
-            UserDataDTO dto = new UserDataDTO();
-            dto.setEmpName(user.getEmpName());
-            dto.setEmpID(user.getEmpId());
-            dto.setEmpIdNum(user.getEmpIdNum());
-            
-            
-            dtoList.add(dto);
+            dtoList.add(convertToDTO(user));
         }
         return dtoList;
+    }
+
+    @Override
+    public List<UserDataDTO> loadEmployeesByDevice(int deviceId) {
+        List<UserData> users = repository.findByDeviceId(deviceId);
+        
+        List<UserDataDTO> dtoList = new ArrayList<>();
+        
+        for(UserData user : users) {
+            dtoList.add(convertToDTO(user));
+        }
+        
+        return dtoList;
+    }
+    
+    private UserDataDTO convertToDTO(UserData user) {
+        UserDataDTO dto = new UserDataDTO();
+        
+        dto.setEmpID(user.getEmpId());
+        dto.setEmpName(user.getEmpName());
+        dto.setEmpIdNum(user.getEmpIdNum());
+        
+        if(user.getDevice() != null) {
+            dto.setDeviceId(user.getDevice().getId());
+        }
+        
+        return dto;
     }
 }
