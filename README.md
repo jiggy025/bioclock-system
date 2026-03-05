@@ -11,7 +11,13 @@ This project is mainly a **learning and development project** focused on buildin
 
 ---
 
-## Preview
+## UI Preview
+
+<p align="center">
+  <img src="docs/dashboardUI.png" width="32%">
+  <img src="docs/addUserDialog.png" width="31%">
+  <img src="docs/testList.png" width="31%">
+</p>
 
 Dashboard showing available biometric devices and management controls.
 
