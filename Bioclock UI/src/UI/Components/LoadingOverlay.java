@@ -1,5 +1,6 @@
 package UI.Components;
 
+import UI.Helper.LoadingSpinnerHelper;
 import java.awt.BorderLayout;
 import java.awt.Color;
 import java.awt.Component;
@@ -7,6 +8,7 @@ import java.awt.Dimension;
 import java.awt.Font;
 import java.awt.Graphics;
 import java.awt.Graphics2D;
+import java.awt.GridBagConstraints;
 import java.awt.GridBagLayout;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseMotionAdapter;
@@ -30,24 +32,19 @@ public class LoadingOverlay extends JPanel {
         addMouseListener(new MouseAdapter() {});
         addMouseMotionListener(new MouseMotionAdapter() {});
         
-        JProgressBar spinner = new JProgressBar();
-        spinner.setIndeterminate(true);
-        spinner.setPreferredSize(new Dimension(80,8));
-        spinner.setBorderPainted(false);
-        spinner.setStringPainted(false);
-
+        LoadingSpinnerHelper spinner = new LoadingSpinnerHelper();
+        spinner.setAlignmentX(Component.CENTER_ALIGNMENT);
+        
         JLabel label = new JLabel("Loading...");
         label.setAlignmentX(Component.CENTER_ALIGNMENT);
         label.setFont(new Font("SansSerif", Font.PLAIN, 14));
         label.setForeground(new Color(90,90,90));
 
-        spinner.setAlignmentX(Component.CENTER_ALIGNMENT);
-
         box.add(spinner);
-        box.add(Box.createVerticalStrut(10));
+        box.add(Box.createVerticalStrut(1));
         box.add(label);
 
-        add(box);
+        add(box, new GridBagConstraints());
     }
     
     @Override
