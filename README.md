@@ -20,6 +20,10 @@ This project is mainly a **learning and development project** focused on buildin
   <img src="docs/toggleSwitch.png" width="31%">
 </p>
 
+## Demo Video (March 7, 2026)
+Watch Demo here:
+https://www.youtube.com/watch?v=wjyVSfHUZuE
+
 Dashboard showing available biometric devices and management controls.
 
 ---
