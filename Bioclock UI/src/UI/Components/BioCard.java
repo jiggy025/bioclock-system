@@ -9,6 +9,7 @@ import java.awt.Color;
 import java.awt.Component;
 import java.awt.Cursor;
 import java.awt.Dimension;
+import java.awt.FlowLayout;
 import java.awt.Font;
 import java.awt.Graphics;
 import java.awt.Graphics2D;
@@ -27,6 +28,8 @@ import javax.swing.Timer;
 public class BioCard extends JPanel {
     
     private boolean hovered = false;
+    private final StatusDot dot;
+    private final ToggleSwitch toggle;
     
     public BioCard(final DeviceDTO device, final IDeviceClickListener listener, final IDeviceStatusListener deviceStatusListener){
         
@@ -36,6 +39,9 @@ public class BioCard extends JPanel {
         setAlignmentX(Component.CENTER_ALIGNMENT);
         setOpaque(true);
         setBackground(Color.WHITE);
+        
+        toggle = new ToggleSwitch();
+        dot = new StatusDot();
         
         JPanel textPanel = new JPanel();
         textPanel.setLayout(new BoxLayout(textPanel, BoxLayout.Y_AXIS));
@@ -47,6 +53,13 @@ public class BioCard extends JPanel {
         final JLabel statusLabel = new JLabel("Status: " + device.getStatus());
         JLabel empLabelCount = new JLabel("Employee(s): " + device.getEmployeeCount());
         
+        JPanel statusRow = new JPanel(new FlowLayout(FlowLayout.LEFT, 2, 0));
+        statusRow.setOpaque(false);
+        statusRow.setAlignmentX(Component.LEFT_ALIGNMENT);
+
+        statusRow.add(dot);
+        statusRow.add(statusLabel);
+        
         bioLabel.setFont(new Font("Segoe UI", Font.BOLD, 18));
         bioLabel.setForeground(new Color(40, 40, 40));
         
@@ -57,9 +70,9 @@ public class BioCard extends JPanel {
         textPanel.add(Box.createVerticalStrut(8));
         textPanel.add(descLabel);
         textPanel.add(Box.createVerticalStrut(8));
-        textPanel.add(statusLabel);
-        textPanel.add(Box.createVerticalStrut(8));
         textPanel.add(empLabelCount);
+        textPanel.add(Box.createVerticalStrut(5));
+        textPanel.add(statusRow);
         
         add(textPanel, BorderLayout.CENTER);
         
@@ -85,10 +98,13 @@ public class BioCard extends JPanel {
                 repaint();
             }
         });
-        ToggleSwitch toggle = new ToggleSwitch();
 
-        toggle.setState("Online".equals(device.getStatus()));
+        boolean online = "Online".equals(device.getStatus());
         
+        dot.setOnline(online);
+        toggle.setState(online);
+        statusLabel.setText(device.getStatus());
+
         toggle.setToggleListener(new IToggleListener() {
             @Override
             public void onToggle(boolean status) {
@@ -100,7 +116,8 @@ public class BioCard extends JPanel {
                     deviceStatus = "Offline";
                 }
                 
-                statusLabel.setText("Status: " + deviceStatus);
+                statusLabel.setText(deviceStatus);
+                dot.setOnline(status);
                 
                 deviceStatusListener.onStatusChange(device.getId(), deviceStatus);
             }

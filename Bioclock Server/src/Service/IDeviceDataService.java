@@ -7,4 +7,6 @@ public interface IDeviceDataService {
     List<DeviceDTO> getAllDevicesDTO();
     
     void updateStatus(int deviceId, String status);
+    
+    DeviceDTO getDeviceById(int deviceId);
 }

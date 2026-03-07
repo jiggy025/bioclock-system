@@ -37,7 +37,7 @@ public class AddEmployeeDialog extends javax.swing.JDialog {
         super(parent, "Add Employee", true);
 
         setLayout(new BorderLayout());
-        setSize(350, 250);
+        setSize(430, 250);
         setLocationRelativeTo(parent);
         
         JPanel formPanel = new JPanel(new GridBagLayout());
@@ -68,7 +68,7 @@ public class AddEmployeeDialog extends javax.swing.JDialog {
         formPanel.add(new JLabel("Employee Name:"), gbc);
 
         gbc.gridx = 1;
-        nameField = new JTextField();
+        nameField = new JTextField(15);
         formPanel.add(nameField, gbc);
         
         // NUMBER FIELD
@@ -77,7 +77,7 @@ public class AddEmployeeDialog extends javax.swing.JDialog {
         formPanel.add(new JLabel("Employee Number:"), gbc);
         
         gbc.gridx = 1;
-        numberField = new JTextField();
+        numberField = new JTextField(15);
         formPanel.add(numberField, gbc);
         
         add(formPanel, BorderLayout.CENTER);

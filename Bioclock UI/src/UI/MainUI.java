@@ -8,6 +8,7 @@ import UI.Controller.EmployeeController;
 import UI.Dialog.AddEmployeeDialog;
 import UI.Listener.IDeviceClickListener;
 import UI.Listener.IDeviceStatusListener;
+import UI.Listener.IEmployeeSearchResult;
 import UI.panels.EmployeeListPanel;
 import bioclock.dto.DeviceDTO;
 import bioclock.dto.UserDataDTO;
@@ -69,7 +70,15 @@ public class MainUI extends javax.swing.JFrame {
             }
         });  
 
-        dashBoardView = new DashboardView(deviceController, new IDeviceClickListener(){
+        dashBoardView = new DashboardView(deviceController, employeeController,
+        new IEmployeeSearchResult(){ 
+            @Override
+            public void showEmployees(List<UserDataDTO> users, DeviceDTO device) {
+                setEmployees(users, device);
+                mainLayout.show(mainContainer, "employees");
+            }     
+        },
+        new IDeviceClickListener(){
             @Override
             public void onDeviceClick(int deviceId) {
                 if(onEmployeeCardClick != null) {
@@ -136,8 +145,8 @@ public class MainUI extends javax.swing.JFrame {
         mainLayout.show(mainContainer, "employees");
     }
     
-    public void setEmployees(List<UserDataDTO> users) {
-        employeeListPanel.setEmployees(users);
+    public void setEmployees(List<UserDataDTO> users, DeviceDTO device) {
+        employeeListPanel.setEmployees(users, device);
     }
     
     public void setOnAddUserClick(Runnable action){

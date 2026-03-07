@@ -28,4 +28,12 @@ public class RMIDeviceService {
             e.printStackTrace();
         }
     }
+    
+    public DeviceDTO getDeviceById(int deviceId) {
+        try {
+            return remoteService.getDeviceById(deviceId);
+        } catch (RemoteException e) {
+            throw new RuntimeException(e);
+        }
+    }
 }

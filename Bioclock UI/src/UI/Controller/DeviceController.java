@@ -19,4 +19,8 @@ public class DeviceController {
     public void updateStatus(int deviceId, String status){
         service.updateStatus(deviceId, status);
     }
+    
+    public DeviceDTO getDeviceById(int deviceId) {
+        return service.getDeviceById(deviceId);
+    }
 }

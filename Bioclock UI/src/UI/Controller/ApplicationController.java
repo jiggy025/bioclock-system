@@ -92,7 +92,9 @@ public class ApplicationController {
             protected void done(){
                 try {
                     List<UserDataDTO> users = get();
-                    view.setEmployees(users);
+                    
+                    DeviceDTO device = deviceController.getDeviceById(currentDeviceId);
+                    view.setEmployees(users, device);
                     view.showEmployees();
                 } catch (Exception e) {
                     e.printStackTrace();

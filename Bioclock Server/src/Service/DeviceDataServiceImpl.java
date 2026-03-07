@@ -41,4 +41,18 @@ public class DeviceDataServiceImpl implements IDeviceDataService{
     public void updateStatus(int deviceId, String status) {
         repository.updateStatus(deviceId, status);
     }
+
+    @Override
+    public DeviceDTO getDeviceById(int deviceId) {
+        BioDevice device = repository.getDeviceById(deviceId);
+        
+        DeviceDTO dto = new DeviceDTO();
+        
+        dto.setId(device.getId());
+        dto.setName(device.getName());
+        dto.setLocation(device.getLocation());
+        dto.setStatus(device.getStatus());
+        
+        return dto;   
+    }
 }

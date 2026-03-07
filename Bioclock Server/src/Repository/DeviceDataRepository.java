@@ -1,6 +1,7 @@
 package Repository;
 
 import Service.IDeviceDataRepository;
+import bioclock.dto.DeviceDTO;
 import bioclock.server.entity.BioDevice;
 import java.util.List;
 import org.hibernate.Query;
@@ -105,6 +106,22 @@ public class DeviceDataRepository implements IDeviceDataRepository {
             if (tx != null) 
                 tx.rollback();
             throw e;
+        } finally {
+            session.close();
+        }
+    }
+
+    @Override
+    public BioDevice getDeviceById(int deviceId) {
+        Session session = sessionFactory.openSession();
+        
+        try {
+            
+            return (BioDevice) session.createQuery(
+                "FROM BioDevice WHERE id = :deviceId")
+                .setParameter("deviceId", deviceId)
+                .uniqueResult();
+            
         } finally {
             session.close();
         }

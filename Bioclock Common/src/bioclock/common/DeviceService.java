@@ -9,4 +9,6 @@ public interface DeviceService extends Remote {
     List<DeviceDTO> getAllDevices() throws RemoteException;
     
     void updateStatus(int deviceId, String status) throws RemoteException;
+    
+    DeviceDTO getDeviceById(int deviceId) throws RemoteException;
 }
