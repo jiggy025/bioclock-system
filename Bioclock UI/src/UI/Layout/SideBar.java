@@ -26,7 +26,7 @@ public class SideBar extends JPanel {
         setLayout(new BoxLayout(this, BoxLayout.Y_AXIS));
         setBackground(new Color(248, 248, 252));
         add(Box.createRigidArea(new Dimension(0, 20)));
-        setPreferredSize(new Dimension(220, 0));
+        setPreferredSize(new Dimension(225, 0));
         setBorder(BorderFactory.createCompoundBorder(BorderFactory.createMatteBorder(0,0,0,1, new Color(220, 220, 220)),
                 BorderFactory.createEmptyBorder(25, 15, 25, 15))
         );
@@ -56,7 +56,7 @@ public class SideBar extends JPanel {
         navPanel.setOpaque(false);
         navPanel.setAlignmentX(Component.CENTER_ALIGNMENT);
 
-        JLabel addUser = new JLabel("+ Add User");
+        JLabel addUser = new JLabel("+ Add Employee");
         addUser.setForeground(new Color(34, 150, 80));
         addUser.setFont(new Font("SansSerif", Font.BOLD, 14));
         addUser.setAlignmentX(Component.RIGHT_ALIGNMENT);

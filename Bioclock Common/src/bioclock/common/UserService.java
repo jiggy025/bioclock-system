@@ -11,4 +11,6 @@ public interface UserService extends Remote {
     void addEmployee(UserDataDTO user) throws RemoteException;
     
     List<UserDataDTO> loadEmployeesByDevice(int deviceId) throws RemoteException;
+    
+    UserDataDTO getEmployeeById(int employeeId) throws RemoteException;
 }

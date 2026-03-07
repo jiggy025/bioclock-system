@@ -1,9 +1,9 @@
-package UI.panels;
+package UI.View.Panels;
 
+import UI.Listener.IEmployeeClickListener;
 import java.awt.BorderLayout;
 import java.awt.Color;
 import java.awt.Dimension;
-import java.awt.FlowLayout;
 import java.awt.Font;
 import java.awt.Graphics;
 import java.awt.Graphics2D;
@@ -14,14 +14,15 @@ import javax.swing.BorderFactory;
 import javax.swing.BoxLayout;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
-import javax.swing.SwingConstants;
 
 public class EmployeeItemPanel extends JPanel {
 
-    private int cornerRadius = 16;
+    private final int cornerRadius = 16;
     private Color backgroundColor = new Color(255,255,255);
     
-    public EmployeeItemPanel(String name, String number, String empId) {
+    private IEmployeeClickListener listener;
+    
+    public EmployeeItemPanel(String name, String number, final String empId) {
 
         setLayout(new BorderLayout());
         setBorder(BorderFactory.createEmptyBorder(14, 20, 14, 20));
@@ -39,6 +40,13 @@ public class EmployeeItemPanel extends JPanel {
             public void mouseExited(MouseEvent e) {
                 backgroundColor = new Color(255,255,255);
                 repaint();
+            }
+            
+            @Override
+            public void mouseClicked(MouseEvent e) {
+                if(listener != null) {
+                    listener.onEmployeeClick(Integer.parseInt(empId));
+                }
             }
         });
         
@@ -68,6 +76,10 @@ public class EmployeeItemPanel extends JPanel {
         
         add(leftPanel, BorderLayout.WEST);
         add(rightPanel, BorderLayout.EAST);
+    }
+    
+    public void setEmployeeClickListener(IEmployeeClickListener listener) {
+        this.listener = listener;
     }
     
     @Override

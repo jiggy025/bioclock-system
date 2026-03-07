@@ -1,6 +1,6 @@
 package UI.Controller;
 
-import UI.Dialog.AddEmployeeDialog;
+import UI.View.Dialogs.AddEmployeeDialog;
 import UI.Listener.IDeviceClickListener;
 import UI.Listener.IDeviceStatusListener;
 import UI.MainUI;
@@ -120,6 +120,12 @@ public class ApplicationController {
                 loadDevices(); //refresh emp count
             }
         });
+    }
+    
+    public void openEmployeeDetails(int employeeId) {
+        UserDataDTO employee = controller.getEmployeeById(employeeId);
+        DeviceDTO device = deviceController.getDeviceById(employeeId);
+        view.showEmployeeDetails(employee, device);
     }
     
     public void updateDeviceStatus(int deviceId, String status) {

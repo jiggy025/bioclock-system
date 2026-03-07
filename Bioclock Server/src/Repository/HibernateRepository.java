@@ -77,4 +77,27 @@ public class HibernateRepository implements IUserDataRepository {
             session.close();
         }
     }
+    
+    public UserData getEmployeeById(int employeeId) {
+        Session session = sessionFactory.openSession();
+        Transaction tx = null;
+        
+        try {
+            tx = session.beginTransaction();
+            
+            UserData user = (UserData) session
+                .createQuery("FROM UserData WHERE empID = :id")
+                .setParameter("id", employeeId)
+                .uniqueResult();
+            
+            tx.commit();
+            return user;
+        } catch (Throwable e) {
+            if (tx != null) 
+                tx.rollback();
+            throw e;
+        } finally {
+            session.close();
+        }
+    }
 }

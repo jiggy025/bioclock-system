@@ -27,4 +27,8 @@ public class EmployeeController {
     public List<UserDataDTO> loadEmployeesByDevice(int deviceId) {
         return employeeService.loadEmployeesByDevice(deviceId);
     }
+    
+    public UserDataDTO getEmployeeById(int employeeId){
+        return employeeService.getEmployeeById(employeeId);
+    }
 }

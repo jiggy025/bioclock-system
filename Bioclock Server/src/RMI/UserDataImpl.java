@@ -32,4 +32,9 @@ public class UserDataImpl extends UnicastRemoteObject implements UserService {
     public List<UserDataDTO> loadEmployeesByDevice(int deviceId) throws RemoteException {
         return userDataService.loadEmployeesByDevice(deviceId);
     }
+
+    @Override
+    public UserDataDTO getEmployeeById(int employeeId) throws RemoteException {
+        return userDataService.getEmployeeById(employeeId);
+    }
 }

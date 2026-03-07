@@ -1,4 +1,4 @@
-package UI.Dialog;
+package UI.View.Dialogs;
 
 import bioclock.dto.DeviceDTO;
 import bioclock.dto.UserDataDTO;

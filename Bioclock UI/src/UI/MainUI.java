@@ -1,15 +1,18 @@
 package UI;
 
 import UI.Components.LoadingOverlay;
+import UI.Controller.ApplicationController;
 import UI.Controller.DeviceController;
 import UI.Layout.DashboardView;
 import UI.Layout.SideBar;
 import UI.Controller.EmployeeController;
-import UI.Dialog.AddEmployeeDialog;
+import UI.View.Dialogs.AddEmployeeDialog;
 import UI.Listener.IDeviceClickListener;
 import UI.Listener.IDeviceStatusListener;
+import UI.Listener.IEmployeeClickListener;
 import UI.Listener.IEmployeeSearchResult;
-import UI.panels.EmployeeListPanel;
+import UI.View.Panels.EmployeeDetailPanel;
+import UI.View.Panels.EmployeeListPanel;
 import bioclock.dto.DeviceDTO;
 import bioclock.dto.UserDataDTO;
 import java.awt.BorderLayout;
@@ -27,14 +30,14 @@ public class MainUI extends javax.swing.JFrame {
     
     private IDeviceClickListener onEmployeeCardClick;
     private IDeviceStatusListener onDeviceStatusChange;
-    
-    private Runnable setOnAddUserclick;
-    
+
     private LoadingOverlay loadingOverlay;
 
+    private static ApplicationController appController;
     private static DeviceController deviceController;
     private static EmployeeController employeeController;
     
+    private EmployeeDetailPanel employeeDetailPanel;
     
     private SideBar sideBar;
     private DashboardView dashBoardView;
@@ -53,6 +56,8 @@ public class MainUI extends javax.swing.JFrame {
         mainContainer.setLayout(mainLayout);
         
         employeeListPanel = new EmployeeListPanel(mainLayout, mainContainer);
+        
+        employeeDetailPanel = new EmployeeDetailPanel();
         
         sideBar = new SideBar(new Runnable() {
             @Override
@@ -102,6 +107,16 @@ public class MainUI extends javax.swing.JFrame {
         
         mainContainer.add(dashboardPage, "dashboard");
         mainContainer.add(employeeListPanel, "employees");
+        mainContainer.add(employeeDetailPanel, "EMPLOYEE_DETAILS");
+        
+        appController = new ApplicationController(this, employeeController, deviceController);
+        
+        employeeListPanel.setEmployeeClickListener(new IEmployeeClickListener() {
+            @Override
+            public void onEmployeeClick(int employeeId) {
+                appController.openEmployeeDetails(employeeId);
+            }
+        });
         
         setLocationRelativeTo(null);
         
@@ -180,8 +195,8 @@ public class MainUI extends javax.swing.JFrame {
                 }
             }
             
-    });
-}
+        });
+    }
     
     public void showAddUserDialog(List<DeviceDTO> devices,
                               AddEmployeeDialog.SaveListener listener) {
@@ -194,6 +209,12 @@ public class MainUI extends javax.swing.JFrame {
     
     public void setOnDeviceStatusChange(IDeviceStatusListener listener) {
         this.onDeviceStatusChange = listener;
+    }
+    
+    public void showEmployeeDetails(UserDataDTO employee, DeviceDTO device) {
+        employeeDetailPanel.setEmployee(employee, device);
+        
+        mainLayout.show(mainContainer, "EMPLOYEE_DETAILS");
     }
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JPanel mainContainer;

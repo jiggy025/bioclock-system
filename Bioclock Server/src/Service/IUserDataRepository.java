@@ -9,4 +9,6 @@ public interface IUserDataRepository {
     void save(UserData user);
     
     List<UserData> findByDeviceId(int deviceId);
+    
+    UserData getEmployeeById(int employeeId);
 }

@@ -66,4 +66,10 @@ public class UserDataServiceImpl implements IUserDataService {
         
         return dto;
     }
+    
+    public UserDataDTO getEmployeeById(int employeeId) {
+        UserData users = repository.getEmployeeById(employeeId);
+        
+        return convertToDTO(users);
+    }
 }

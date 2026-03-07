@@ -1,4 +1,4 @@
-package UI.panels;
+package UI.View.Panels;
 
 import UI.Listener.IEmployeeSuggestionListener;
 import UI.Listener.PlaceholderFocusListener;

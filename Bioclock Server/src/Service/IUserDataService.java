@@ -9,4 +9,6 @@ public interface IUserDataService {
     void addEmployee(UserDataDTO user);
     
     List<UserDataDTO> loadEmployeesByDevice(int deviceId);
+    
+    UserDataDTO getEmployeeById(int employeeId);
 }

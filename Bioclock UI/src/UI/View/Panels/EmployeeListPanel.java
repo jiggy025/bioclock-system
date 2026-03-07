@@ -1,7 +1,9 @@
-package UI.panels;
+package UI.View.Panels;
 
 import UI.Controller.DeviceController;
+import UI.Controller.EmployeeController;
 import UI.Helper.ScrollPaneHelper;
+import UI.Listener.IEmployeeClickListener;
 import bioclock.client.service.RMIDeviceService;
 import bioclock.dto.DeviceDTO;
 import bioclock.dto.UserDataDTO;
@@ -29,11 +31,19 @@ public class EmployeeListPanel extends JPanel {
     private JLabel deviceLabel;
     private JLabel locationLabel;
     private JLabel employeeCountLabel;
+    
+    private IEmployeeClickListener clickListener;
+    
+    private final CardLayout layout;
+    private final JPanel parent;
 
     public EmployeeListPanel(final CardLayout layout, final JPanel parent) {
 
         setLayout(new BorderLayout());
         setBackground(new Color(242, 242, 242));
+        
+        this.layout = layout;
+        this.parent = parent;
 
         // ===== HEADER =====
         JPanel header = new JPanel(new BorderLayout());
@@ -120,8 +130,7 @@ public class EmployeeListPanel extends JPanel {
     public void setEmployees(List<UserDataDTO> users, DeviceDTO device) {
 
     listContainer.removeAll();
-    
-    
+
     deviceLabel.setText(device.getName());
     locationLabel.setText(device.getLocation());
     employeeCountLabel.setText("Employee(s): " + users.size());
@@ -134,13 +143,18 @@ public class EmployeeListPanel extends JPanel {
             String.valueOf(user.getEmpId())
         );
         
+        item.setEmployeeClickListener(new IEmployeeClickListener(){
+            @Override
+            public void onEmployeeClick(int employeeId) {
+                clickListener.onEmployeeClick(employeeId);
+            }
+        });
+        
         JPanel wrapper = new JPanel(new BorderLayout());
         wrapper.setOpaque(false);
         wrapper.setBorder(BorderFactory.createEmptyBorder(0, 25, 0, 25));
         wrapper.add(item);
-        
-        
-        
+
         listContainer.add(wrapper);
         listContainer.add(Box.createVerticalStrut(22));
         item.setAlignmentX(Component.LEFT_ALIGNMENT);
@@ -148,5 +162,9 @@ public class EmployeeListPanel extends JPanel {
 
     listContainer.revalidate();
     listContainer.repaint();
+    }
+    
+    public void setEmployeeClickListener(IEmployeeClickListener listener){
+        this.clickListener = listener;
     }
 }

@@ -43,4 +43,15 @@ public class RMIEmployeeService implements EmployeeService {
             return Collections.emptyList();
         }
     }
+    
+    @Override
+    public UserDataDTO getEmployeeById(int employeeId) {
+        try {
+            return remoteService.getEmployeeById(employeeId);
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        
+        return null;
+    }
 }
