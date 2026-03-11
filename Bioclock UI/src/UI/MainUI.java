@@ -6,7 +6,10 @@ import UI.Controller.DeviceController;
 import UI.Layout.DashboardView;
 import UI.Layout.SideBar;
 import UI.Controller.EmployeeController;
+<<<<<<< HEAD
 import UI.Controller.LogsController;
+=======
+>>>>>>> a064c69378a230fb0314893b29d8f940bc002a34
 import UI.View.Dialogs.AddEmployeeDialog;
 import UI.Listener.IDeviceClickListener;
 import UI.Listener.IDeviceStatusListener;
@@ -37,18 +40,28 @@ public class MainUI extends javax.swing.JFrame {
     private static ApplicationController appController;
     private static DeviceController deviceController;
     private static EmployeeController employeeController;
+<<<<<<< HEAD
     private static LogsController logsController;
+=======
+>>>>>>> a064c69378a230fb0314893b29d8f940bc002a34
     
     private EmployeeDetailPanel employeeDetailPanel;
     
     private SideBar sideBar;
     private DashboardView dashBoardView;
     
+<<<<<<< HEAD
     public MainUI(EmployeeController employeeController, DeviceController deviceController, LogsController logsController) {
         initComponents();
         this.deviceController = deviceController;
         this.employeeController = employeeController;
         this.logsController = logsController;
+=======
+    public MainUI(EmployeeController employeeController, DeviceController deviceController) {
+        initComponents();
+        this.deviceController = deviceController;
+        this.employeeController = employeeController;
+>>>>>>> a064c69378a230fb0314893b29d8f940bc002a34
         
         createLoadingOverlay();
         
@@ -60,7 +73,11 @@ public class MainUI extends javax.swing.JFrame {
         
         employeeListPanel = new EmployeeListPanel(mainLayout, mainContainer);
         
+<<<<<<< HEAD
         employeeDetailPanel = new EmployeeDetailPanel(mainLayout, mainContainer);
+=======
+        employeeDetailPanel = new EmployeeDetailPanel();
+>>>>>>> a064c69378a230fb0314893b29d8f940bc002a34
         
         sideBar = new SideBar(new Runnable() {
             @Override
@@ -112,7 +129,11 @@ public class MainUI extends javax.swing.JFrame {
         mainContainer.add(employeeListPanel, "employees");
         mainContainer.add(employeeDetailPanel, "EMPLOYEE_DETAILS");
         
+<<<<<<< HEAD
         appController = new ApplicationController(this, employeeController, deviceController, logsController);
+=======
+        appController = new ApplicationController(this, employeeController, deviceController);
+>>>>>>> a064c69378a230fb0314893b29d8f940bc002a34
         
         employeeListPanel.setEmployeeClickListener(new IEmployeeClickListener() {
             @Override
@@ -150,7 +171,11 @@ public class MainUI extends javax.swing.JFrame {
     public static void main(String args[]) {
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
+<<<<<<< HEAD
                 new MainUI(employeeController, deviceController, logsController).setVisible(true);
+=======
+                new MainUI(employeeController, deviceController).setVisible(true);
+>>>>>>> a064c69378a230fb0314893b29d8f940bc002a34
             }
         });
     }

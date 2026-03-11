@@ -9,7 +9,11 @@ import Service.IUserDataRepository;
 
 public class HibernateRepository implements IUserDataRepository {
 
+<<<<<<< HEAD
     SessionFactory sessionFactory;
+=======
+    private SessionFactory sessionFactory;
+>>>>>>> a064c69378a230fb0314893b29d8f940bc002a34
     
     public HibernateRepository(SessionFactory sessionFactory) {
         this.sessionFactory = sessionFactory;

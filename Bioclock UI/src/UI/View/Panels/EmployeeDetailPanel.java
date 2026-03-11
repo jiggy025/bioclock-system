@@ -4,9 +4,13 @@ import UI.Components.CircleAvatar;
 import bioclock.dto.DeviceDTO;
 import bioclock.dto.UserDataDTO;
 import java.awt.BorderLayout;
+<<<<<<< HEAD
 import java.awt.CardLayout;
 import java.awt.Color;
 import java.awt.Cursor;
+=======
+import java.awt.Color;
+>>>>>>> a064c69378a230fb0314893b29d8f940bc002a34
 import java.awt.Dimension;
 import java.awt.FlowLayout;
 import java.awt.Font;
@@ -14,6 +18,7 @@ import java.awt.Graphics;
 import java.awt.Graphics2D;
 import java.awt.GridBagConstraints;
 import java.awt.GridBagLayout;
+<<<<<<< HEAD
 import java.awt.Insets;
 import java.awt.RenderingHints;
 import java.awt.event.ActionEvent;
@@ -21,6 +26,15 @@ import java.awt.event.ActionListener;
 import javax.swing.BorderFactory;
 import javax.swing.Box;
 import javax.swing.BoxLayout;
+=======
+import java.awt.GridLayout;
+import java.awt.Insets;
+import java.awt.RenderingHints;
+import javax.swing.BorderFactory;
+import javax.swing.Box;
+import javax.swing.BoxLayout;
+import javax.swing.ImageIcon;
+>>>>>>> a064c69378a230fb0314893b29d8f940bc002a34
 import javax.swing.JButton;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
@@ -36,6 +50,7 @@ public class EmployeeDetailPanel extends JPanel {
     private JLabel locationLabel;
     private JLabel statusValue;
     
+<<<<<<< HEAD
     private final CardLayout layout;
     private final JPanel parent;
     
@@ -44,6 +59,10 @@ public class EmployeeDetailPanel extends JPanel {
         this.layout = layout;
         this.parent = parent;
         
+=======
+    public EmployeeDetailPanel() {
+
+>>>>>>> a064c69378a230fb0314893b29d8f940bc002a34
         setLayout(new BorderLayout());
         setBackground(new Color(242,242,242));
 
@@ -61,12 +80,17 @@ public class EmployeeDetailPanel extends JPanel {
         
         JPanel wrapper = new JPanel(new BorderLayout());
         wrapper.setOpaque(false);
+<<<<<<< HEAD
         wrapper.setBorder(new EmptyBorder(15, 30, 15, 30));
+=======
+        wrapper.setBorder(new EmptyBorder(5, 10, 5, 10));
+>>>>>>> a064c69378a230fb0314893b29d8f940bc002a34
 
         wrapper.add(card, BorderLayout.CENTER);
 
         add(wrapper, BorderLayout.CENTER);;
 
+<<<<<<< HEAD
         JPanel header = new JPanel(new BorderLayout());
         header.setBackground(new Color(245, 245, 245));
         header.setBorder(BorderFactory.createEmptyBorder(8,20,0,20));
@@ -89,6 +113,8 @@ public class EmployeeDetailPanel extends JPanel {
         header.add(backButton, BorderLayout.WEST);
         add(header, BorderLayout.NORTH);
         
+=======
+>>>>>>> a064c69378a230fb0314893b29d8f940bc002a34
         // HEADER
         JLabel title = new JLabel("Employee Details");
         title.setFont(new Font("Segoe UI", Font.BOLD, 20));

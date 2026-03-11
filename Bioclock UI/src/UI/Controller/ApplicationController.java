@@ -13,6 +13,7 @@ import javax.swing.SwingWorker;
 public class ApplicationController {
     
     private final MainUI view;
+<<<<<<< HEAD
     
     private final EmployeeController controller;
     private final DeviceController deviceController;
@@ -25,6 +26,16 @@ public class ApplicationController {
         this.controller = controller;
         this.deviceController = deviceController;
         this.logsController = logsController;
+=======
+    private final EmployeeController controller;
+    private final DeviceController deviceController;
+    private int currentDeviceId;
+    
+    public ApplicationController(MainUI view, EmployeeController controller, DeviceController deviceController) {
+        this.view = view;
+        this.controller = controller;
+        this.deviceController = deviceController;
+>>>>>>> a064c69378a230fb0314893b29d8f940bc002a34
         wireEvents();
         loadDevices();
     }
@@ -128,7 +139,11 @@ public class ApplicationController {
     
     public void openEmployeeDetails(int employeeId) {
         UserDataDTO employee = controller.getEmployeeById(employeeId);
+<<<<<<< HEAD
         DeviceDTO device = deviceController.getDeviceById(employee.getDeviceId());
+=======
+        DeviceDTO device = deviceController.getDeviceById(employeeId);
+>>>>>>> a064c69378a230fb0314893b29d8f940bc002a34
         view.showEmployeeDetails(employee, device);
     }
     

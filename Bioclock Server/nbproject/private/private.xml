@@ -19,6 +19,7 @@
             <file>file:/C:/Users/Jiggyy/Documents/NetBeansProjects/Bioclock%20Server/src/Service/IDeviceDataService.java</file>
             <file>file:/C:/Users/Jiggyy/Documents/NetBeansProjects/Bioclock%20Server/src/Service/UserDataServiceImpl.java</file>
         </group>
+<<<<<<< HEAD
         <group name="viajero">
             <file>file:/C:/Users/Jiggyy/Documents/NetBeansProjects/Bioclock%20Server/src/Service/ActivityLogService.java</file>
             <file>file:/C:/Users/Jiggyy/Documents/NetBeansProjects/Bioclock%20Server/src/bioclock/server/entity/ActivityLog.java</file>
@@ -49,5 +50,7 @@
             <file>file:/C:/Users/Jiggyy/Documents/NetBeansProjects/Bioclock%20Server/src/Service/UserDataServiceImpl.java</file>
             <file>file:/C:/Users/Jiggyy/Documents/NetBeansProjects/Bioclock%20Server/src/Service/IActivityLogService.java</file>
         </group>
+=======
+>>>>>>> a064c69378a230fb0314893b29d8f940bc002a34
     </open-files>
 </project-private>

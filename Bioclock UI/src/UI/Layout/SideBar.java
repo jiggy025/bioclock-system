@@ -13,9 +13,16 @@ import java.awt.event.MouseEvent;
 import javax.swing.BorderFactory;
 import javax.swing.Box;
 import javax.swing.BoxLayout;
+<<<<<<< HEAD
 import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.SwingConstants;
+=======
+import javax.swing.JButton;
+import javax.swing.JLabel;
+import javax.swing.JOptionPane;
+import javax.swing.JPanel;
+>>>>>>> a064c69378a230fb0314893b29d8f940bc002a34
 
 public class SideBar extends JPanel {
     
@@ -46,12 +53,15 @@ public class SideBar extends JPanel {
         email.setFont(new Font("Arial", Font.PLAIN, 12));
         email.setForeground(new Color(130, 130, 130));
         
+<<<<<<< HEAD
         fullName.setHorizontalAlignment(SwingConstants.CENTER);
         email.setHorizontalAlignment(SwingConstants.CENTER);
 
         fullName.setMaximumSize(new Dimension(Integer.MAX_VALUE, 30));
         email.setMaximumSize(new Dimension(Integer.MAX_VALUE, 20));
         
+=======
+>>>>>>> a064c69378a230fb0314893b29d8f940bc002a34
         JPanel dashBoard = new NavItem("Dashboard", "/bioclock/main/resources/dashboard.png");
         JPanel settings = new NavItem("Settings", "/bioclock/main/resources/settings.png");
         JPanel logout = new NavItem("Logout", "/bioclock/main/resources/logout.png");

@@ -1,7 +1,15 @@
 package UI.View.Panels;
 
+<<<<<<< HEAD
 import UI.Helper.ScrollPaneHelper;
 import UI.Listener.IEmployeeClickListener;
+=======
+import UI.Controller.DeviceController;
+import UI.Controller.EmployeeController;
+import UI.Helper.ScrollPaneHelper;
+import UI.Listener.IEmployeeClickListener;
+import bioclock.client.service.RMIDeviceService;
+>>>>>>> a064c69378a230fb0314893b29d8f940bc002a34
 import bioclock.dto.DeviceDTO;
 import bioclock.dto.UserDataDTO;
 import java.awt.BorderLayout;
@@ -85,6 +93,10 @@ public class EmployeeListPanel extends JPanel {
         rightSpacer.setOpaque(false);
         rightSpacer.setPreferredSize(backButton.getPreferredSize());
         
+<<<<<<< HEAD
+=======
+        
+>>>>>>> a064c69378a230fb0314893b29d8f940bc002a34
         header.add(backButton, BorderLayout.WEST);
         header.add(titlePanel, BorderLayout.CENTER);
         header.add(rightSpacer, BorderLayout.EAST);

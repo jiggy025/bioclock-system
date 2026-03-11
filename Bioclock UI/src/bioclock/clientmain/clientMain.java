@@ -4,6 +4,7 @@ import RMIConnector.RMIConnector;
 import UI.Controller.ApplicationController;
 import UI.Controller.DeviceController;
 import UI.Controller.EmployeeController;
+<<<<<<< HEAD
 import UI.Controller.LogsController;
 import UI.MainUI;
 import bioclock.client.service.EmployeeService;
@@ -11,6 +12,12 @@ import bioclock.client.service.RMIActivityLogService;
 import bioclock.client.service.RMIDeviceService;
 import bioclock.client.service.RMIEmployeeService;
 import bioclock.common.ActivityLogService;
+=======
+import UI.MainUI;
+import bioclock.client.service.EmployeeService;
+import bioclock.client.service.RMIDeviceService;
+import bioclock.client.service.RMIEmployeeService;
+>>>>>>> a064c69378a230fb0314893b29d8f940bc002a34
 import bioclock.common.DeviceService;
 import bioclock.common.UserService;
 import javax.swing.SwingUtilities;
@@ -25,6 +32,7 @@ public class clientMain {
             @Override
             public void run() {
                 try {
+<<<<<<< HEAD
                     
                     //Remote services
                     DeviceService remoteDeviceService = RMIConnector.getDeviceService();
@@ -43,6 +51,23 @@ public class clientMain {
                     final MainUI view = new MainUI(controller, deviceController, logsController);
 
                     new ApplicationController(view, controller, deviceController, logsController);
+=======
+                    DeviceService remoteDeviceService = RMIConnector.getDeviceService();
+                    
+                    UserService remoteService = RMIConnector.getService();
+                    
+                    RMIDeviceService deviceService = new RMIDeviceService(remoteDeviceService);
+                    
+                    DeviceController deviceController = new DeviceController(deviceService);
+                    
+                    EmployeeService employeeService = new RMIEmployeeService(remoteService);
+                    
+                    final EmployeeController controller = new EmployeeController(employeeService);
+                    
+                    final MainUI view = new MainUI(controller, deviceController);
+
+                    new ApplicationController(view, controller, deviceController);
+>>>>>>> a064c69378a230fb0314893b29d8f940bc002a34
                     
                     SwingUtilities.invokeLater( new Runnable(){
                         @Override

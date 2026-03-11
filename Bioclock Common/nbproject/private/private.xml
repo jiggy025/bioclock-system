@@ -8,6 +8,7 @@
             <file>file:/C:/Users/Jiggyy/Documents/NetBeansProjects/Bioclock%20Common/src/bioclock/common/UserService.java</file>
             <file>file:/C:/Users/Jiggyy/Documents/NetBeansProjects/Bioclock%20Common/src/bioclock/dto/DeviceDTO.java</file>
         </group>
+<<<<<<< HEAD
         <group name="testprojects">
             <file>file:/C:/Users/Jiggyy/Documents/NetBeansProjects/Bioclock%20Common/src/bioclock/common/ActivityLogService.java</file>
             <file>file:/C:/Users/Jiggyy/Documents/NetBeansProjects/Bioclock%20Common/src/bioclock/dto/UserDataDTO.java</file>
@@ -16,5 +17,7 @@
             <file>file:/C:/Users/Jiggyy/Documents/NetBeansProjects/Bioclock%20Common/src/bioclock/common/UserService.java</file>
             <file>file:/C:/Users/Jiggyy/Documents/NetBeansProjects/Bioclock%20Common/src/bioclock/dto/DeviceDTO.java</file>
         </group>
+=======
+>>>>>>> a064c69378a230fb0314893b29d8f940bc002a34
     </open-files>
 </project-private>

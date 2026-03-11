@@ -9,7 +9,11 @@
         <property name="hibernate.connection.driver_class">com.mysql.jdbc.Driver</property>
         <property name="hibernate.connection.url">jdbc:mysql://localhost:3306/user_management?useSSL=false</property>
         <property name="hibernate.connection.username">root</property>
+<<<<<<< HEAD
         <property name="hibernate.connection.password">root</property>
+=======
+        <property name="hibernate.connection.password">pass123</property>
+>>>>>>> a064c69378a230fb0314893b29d8f940bc002a34
 
         <!-- JDBC connection pool -->
         <property name="hibernate.connection.pool_size">1</property>
@@ -23,6 +27,9 @@
         <!-- Annotated classes -->
         <mapping class="bioclock.server.entity.UserData"/>
         <mapping class="bioclock.server.entity.BioDevice"/>
+<<<<<<< HEAD
         <mapping class="bioclock.server.entity.ActivityLog"/>
+=======
+>>>>>>> a064c69378a230fb0314893b29d8f940bc002a34
     </session-factory>
 </hibernate-configuration>

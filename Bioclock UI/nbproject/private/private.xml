@@ -3,6 +3,7 @@
     <editor-bookmarks xmlns="http://www.netbeans.org/ns/editor-bookmarks/2" lastBookmarkId="0"/>
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
         <group>
+<<<<<<< HEAD
             <file>file:/C:/Users/Jiggyy/Documents/NetBeansProjects/Bioclock%20UI/src/UI/View/Dialogs/AddEmployeeDialog.java</file>
             <file>file:/C:/Users/Jiggyy/Documents/NetBeansProjects/Bioclock%20UI/src/UI/Controller/EmployeeController.java</file>
             <file>file:/C:/Users/Jiggyy/Documents/NetBeansProjects/Bioclock%20UI/src/UI/Listener/IDeviceClickListener.java</file>
@@ -56,6 +57,31 @@
             <file>file:/C:/Users/Jiggyy/Documents/NetBeansProjects/Bioclock%20UI/src/UI/Components/LoadingOverlay.java</file>
             <file>file:/C:/Users/Jiggyy/Documents/NetBeansProjects/Bioclock%20UI/src/UI/Components/BioCard.java</file>
             <file>file:/C:/Users/Jiggyy/Documents/NetBeansProjects/Bioclock%20UI/src/UI/Listener/IDeviceStatusListener.java</file>
+=======
+            <file>file:/C:/Users/Jiggyy/Documents/NetBeansProjects/Bioclock%20UI/src/UI/panels/EmployeeItemPanel.java</file>
+            <file>file:/C:/Users/Jiggyy/Documents/NetBeansProjects/Bioclock%20UI/src/UI/Listener/IEmployeeSuggestionListener.java</file>
+            <file>file:/C:/Users/Jiggyy/Documents/NetBeansProjects/Bioclock%20UI/src/UI/Controller/EmployeeController.java</file>
+            <file>file:/C:/Users/Jiggyy/Documents/NetBeansProjects/Bioclock%20UI/src/UI/panels/SearchPanel.java</file>
+            <file>file:/C:/Users/Jiggyy/Documents/NetBeansProjects/Bioclock%20UI/src/UI/Dialog/AddEmployeeDialog.java</file>
+            <file>file:/C:/Users/Jiggyy/Documents/NetBeansProjects/Bioclock%20UI/src/UI/Listener/IDeviceClickListener.java</file>
+            <file>file:/C:/Users/Jiggyy/Documents/NetBeansProjects/Bioclock%20UI/src/bioclock/client/service/RMIEmployeeService.java</file>
+            <file>file:/C:/Users/Jiggyy/Documents/NetBeansProjects/Bioclock%20UI/src/UI/MainUI.java</file>
+            <file>file:/C:/Users/Jiggyy/Documents/NetBeansProjects/Bioclock%20UI/src/UI/Layout/DashboardView.java</file>
+            <file>file:/C:/Users/Jiggyy/Documents/NetBeansProjects/Bioclock%20UI/src/UI/Controller/ApplicationController.java</file>
+            <file>file:/C:/Users/Jiggyy/Documents/NetBeansProjects/Bioclock%20UI/src/UI/panels/EmployeeListPanel.java</file>
+            <file>file:/C:/Users/Jiggyy/Documents/NetBeansProjects/Bioclock%20UI/src/UI/Components/NavItem.java</file>
+            <file>file:/C:/Users/Jiggyy/Documents/NetBeansProjects/Bioclock%20UI/src/UI/Components/CircleAvatar.java</file>
+            <file>file:/C:/Users/Jiggyy/Documents/NetBeansProjects/Bioclock%20UI/src/UI/Components/StatusDot.java</file>
+            <file>file:/C:/Users/Jiggyy/Documents/NetBeansProjects/Bioclock%20UI/src/bioclock/client/service/EmployeeService.java</file>
+            <file>file:/C:/Users/Jiggyy/Documents/NetBeansProjects/Bioclock%20UI/src/bioclock/clientmain/clientMain.java</file>
+            <file>file:/C:/Users/Jiggyy/Documents/NetBeansProjects/Bioclock%20UI/src/UI/Components/LoadingOverlay.java</file>
+            <file>file:/C:/Users/Jiggyy/Documents/NetBeansProjects/Bioclock%20UI/src/RMIConnector/RMIConnector.java</file>
+            <file>file:/C:/Users/Jiggyy/Documents/NetBeansProjects/Bioclock%20UI/src/bioclock/client/service/RMIDeviceService.java</file>
+            <file>file:/C:/Users/Jiggyy/Documents/NetBeansProjects/Bioclock%20UI/src/UI/Layout/SideBar.java</file>
+            <file>file:/C:/Users/Jiggyy/Documents/NetBeansProjects/Bioclock%20UI/src/UI/Components/BioCard.java</file>
+            <file>file:/C:/Users/Jiggyy/Documents/NetBeansProjects/Bioclock%20UI/src/UI/Listener/IDeviceStatusListener.java</file>
+            <file>file:/C:/Users/Jiggyy/Documents/NetBeansProjects/Bioclock%20UI/src/UI/Controller/DeviceController.java</file>
+>>>>>>> a064c69378a230fb0314893b29d8f940bc002a34
             <file>file:/C:/Users/Jiggyy/Documents/NetBeansProjects/Bioclock%20UI/src/UI/Listener/IEmployeeSearchResult.java</file>
         </group>
     </open-files>
